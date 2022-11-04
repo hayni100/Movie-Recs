@@ -1,4 +1,4 @@
-//Information Flow for Movie Recs
+//Outline for Movie Recs
 // 1. User selects some genres
 //Using a form submit
 // 2. A queryURL specifying those genres fetches titles from the ADVANCED MOVIE SEARCH API
