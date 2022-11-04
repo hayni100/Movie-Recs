@@ -1,0 +1,29 @@
+/* main color palette */
+:root {
+
+}
+
+
+
+
+
+/* Buttons */
+button {
+    font-size: 1.2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 10%;
+    padding: 20px;
+    border-radius: 1.5rem;
+    margin: 20px;
+    color: white;
+    background-color: darkred;
+    text-align: center;
+}
+
+button:hover {
+    box-shadow: 0px 0px 10px maroon;
+}
+
+button:active {
+    background-color: red;
+}
