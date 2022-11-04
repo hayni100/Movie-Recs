@@ -1,5 +1,4 @@
 Hello Guys!!!!
 Lets use this page to give each other updates :)
 
-Haein's Update
-1. I was thinking if we can use 'class' for css and 'id' for javascript
+This is testing the merge conflict 
