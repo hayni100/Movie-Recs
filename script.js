@@ -37,19 +37,20 @@ function getByGenre() {
 			return response.json();
 		})
 		.then(function (genreObject) {
+			//this is waiting for resolution within this then function we have access to the data in the response
 			console.log(genreObject);
+			console.log(genreObject.results[0].id); //i'm just trying to see the id number, which should be 675054, of the 0 index of the results array.
+			//pass genreObject as an argument to another function outside
+			var numOfTitles = 10;
+			for (let i = 0; i < numOfTitles; i++) {
+				var titleCode = genreObject.results[i].id;
+				var title = genreObject.results[i].title;
+				console.log(titleCode);
+				console.log(title);
+			}
 		});
-	console.log(genreObject.results[0].id); //i'm just trying to see the id number, which should be 675054, of the 0 index of the results array.
 }
 getByGenre(); //don't forget to run the function.
-
-// var numOfTitles = 10;
-// for (let i = 0; i < numOfTitles; i++) {
-// 	var titleCode = genreObject.results[i].id;
-// 	var title = genreObject.results[i].title;
-// 	console.log(titleCode);
-// 	console.log(title);
-// }
 
 //Watchmode OTT STREAMING SERVICE AVAILABILITY
 ////////////////////////////////////////////////
