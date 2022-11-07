@@ -1,13 +1,24 @@
 /* main color palette */
 :root {
+}
 
+/* Navbar */
+#navbar ul {
+    display: flex;
+    justify-content: space-between;
+    background-color: maroon;
 }
 
 
-
-
-
 /* Buttons */
+/* Trying to fix this to set bottom row of buttons to fill the screen */
+#all-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
 button {
     font-size: 1.2rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -26,4 +37,19 @@ button:hover {
 
 button:active {
     background-color: red;
+}
+
+#suggest {
+    display: flex;
+    justify-content: center;
+}
+
+/* phone size */
+@media (max-width: 480px) {
+
+}
+
+/* Tablet size */
+@media (max-width: 768px) {
+
 }
