@@ -2,6 +2,14 @@
 :root {
 }
 
+
+/* Header */
+h1,
+header p {
+    display: flex;
+    justify-content: center;
+}
+
 /* Navbar */
 #navbar ul {
     display: flex;
@@ -11,7 +19,6 @@
 
 
 /* Buttons */
-/* Trying to fix this to set bottom row of buttons to fill the screen */
 #all-buttons {
     display: flex;
     flex-wrap: wrap;
@@ -31,9 +38,15 @@ button {
     text-align: center;
 }
 
+.horror,
+.western  {
+    width: 15%;
+}
+
 button:hover {
     box-shadow: 0px 0px 10px maroon;
 }
+
 
 button:active {
     background-color: red;
@@ -45,7 +58,7 @@ button:active {
 }
 
 /* phone size */
-@media (max-width: 480px) {
+@media (max-width: 992px) {
 
 }
 
