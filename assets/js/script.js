@@ -111,7 +111,10 @@ function getStreamSources(watchModeId) {
 			return response.json();
 		})
 		.then(function (sourcesObject) {
-			console.log(sourcesObject);
+			console.log(
+				"This is the retrieved JSON after being parsed in getStreamSources (the third and final API call): " +
+					sourcesObject
+			);
 			var numOfSources = 1;
 
 			for (let i = 0; i < numOfSources; i++) {
