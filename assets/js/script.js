@@ -5,10 +5,3 @@
 // 3. A new queryURL specifying those titles fetches watchmode ID's from WATCHMODE API
 // 4. A new queryURL specifying those movie ID's fetches "where to stream" info from WATCHMODE API
 //"Where to stream" shows in the DOM
-
-
-var actionButton = document.querySelector("#28action");
-
-function buttonToNumber (e) {
-    actionButton = "28"
-}
