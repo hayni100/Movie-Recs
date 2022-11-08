@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////
-//getByGenre gets movie titles given a string of genre codes using the ADVANCED MOVIE SEARCH API.
+//getTitleByGenre gets movie titles given a string of genre codes using the ADVANCED MOVIE SEARCH API.
 
 var actionButton = document.getElementById("28"); //28 is the id for "action movie genre"
 function printConsole() {
@@ -9,9 +9,9 @@ actionButton.addEventListener("click", printConsole);
 //have an event listener on a genre buttons parent and as the user clicks on the genre buttons, the string gets built. the event listener is listening to the specific click, the child, that has its own data that is the genre ID.
 //gets a number of title IDs based on the user's (multiple) genre preferences'
 
-function getByGenre() {
+function getTitleByGenre() {
 	//gets a movie title given a genreCodeString
-	var genreCodeString = "35, 14, 12"; //this is an example of what will be passed here from user input any number of genre codes written as a string with commas
+	var genreCodeString = "14,"; //this is an example of what will be passed here from user input any number of genre codes written as a string with commas
 	var genreURL =
 		"https://advanced-movie-search.p.rapidapi.com/discover/movie?with_genres=" +
 		genreCodeString +
@@ -33,20 +33,30 @@ function getByGenre() {
 		})
 		.then(function (genreObject) {
 			console.log(genreObject);
-			var title = genreObject.results[0].title;
-			console.log("Title: " + title);
-			getWatchModeId(title);
+			function makeVar() {
+				//
+				//I have no idea why putting this inside a function is helping
+				var title = genreObject.results[0].title;
+				console.log(
+					title + "has now been parsed in GetTitleByGenre (our first function)"
+				);
+				getWatchModeId(title);
+			}
+			makeVar();
 		});
-	getWatchModeId(); //I need to somehow figure out how to pass "title" to getWatchMode!
+	getWatchModeId(); //"title" seems to be passed to"
 }
-getByGenre(); //calling the function
+getTitleByGenre(); //calling the function
 
-//the following needs to somehow get the var title from the getByGenre function!
+//the following needs to somehow get the var title from the getTitleByGenre function!
 function getWatchModeId(title) {
-	console.log("var movieName: " + title); //error title is not defined
+	console.log(
+		"getWatchModeId (our second function) is now receiving this 'title' from GetTitleByGenre (our first function)" +
+			title
+	);
 	var watchIdURL =
 		"https://watchmode.p.rapidapi.com/search/?search_field=name&search_value=" +
-		movieName;
+		title;
 
 	const options2 = {
 		method: "GET",
@@ -64,20 +74,24 @@ function getWatchModeId(title) {
 			return response.json();
 		})
 		.then(function (watchIdObject) {
-			//console.log(watchIdObject);
-			for (let i = 0; i < 5; i++) {
-				//saying i<5 in the above line is not really... good. better would be to have title_results.length be defined ahead of time
-				var watchModeId = watchIdObject.title_results[i].id;
-				console.log("getWatchModeId " + watchModeId);
-			}
+			var watchModeId = watchIdObject.title_results[0].id; //use this single line to grab just the first title Id
+			// var watchModesArray = [] //if we want more than one title result turn on this array builder code
+			// for (let i = 0; i < 5; i++) {
+			// 	var watchModeId = watchIdObject.title_results[i].id;
+			// 	watchModesArray.push(watchModeId);
+			//}
+			//var IdString = watchModesArray.toString();//if we want more than one title result turn this on also and pass it down as a parameter somehow
+			getStreamSources(watchModeId);
 		});
 }
 getWatchModeId(); //calling the function
 
-////////////////////////////////////////////////////////////////////////////////////////////////
 //getStreamSources takes a seven digit Watchmode ID and give where to watch, buy or rent, and price. It also uses the watchmode API.
-function getStreamSources() {
-	var watchModeId = 1346024;
+function getStreamSources(watchModeId) {
+	console.log(
+		"this is getStreamSources (our third and last call function) receiving a single watchModeId from getWatchModeId:   " +
+			watchModeId
+	);
 	var getStreamURL =
 		"https://watchmode.p.rapidapi.com/title/" + watchModeId + "/sources/";
 
@@ -97,15 +111,15 @@ function getStreamSources() {
 			return response.json();
 		})
 		.then(function (sourcesObject) {
-			//console.log(sourcesObject);
-			var numOfTitles = 10;
+			console.log(sourcesObject);
+			var numOfSources = 1;
 
-			for (let i = 0; i < numOfTitles; i++) {
+			for (let i = 0; i < numOfSources; i++) {
 				var streamSource = sourcesObject[i].name;
 				var streamPrice = sourcesObject[i].price;
 				var BuyOrRent = sourcesObject[i].type;
 				console.log(
-					"getStreamSources " +
+					"These are the getStreamSources: " +
 						streamSource +
 						"  " +
 						BuyOrRent +
