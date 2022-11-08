@@ -1,48 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
-    />
-    <link rel="stylesheet" href="./assets/css/styles.css"/>
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
-
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+        <link rel="stylesheet" href="./assets/css/styles.css" />
     <title>What to Watch Where to Watch</title>
 </head>
+
 <body>
-    <header class="header">
-    <h1>WTW</h1>
-    <p>Where to Watch What to Watch</p>
-    </header>
-    <main>
-    <section class="pick-genre">
-        <div id="all-buttons">
-        <button id="28Action">Action</button>
-        <button id="12Adventure">Adventure</button>
-        <button id="16Animation">Animation</button>
-        <button id="35Comedy">Comedy</button>
-        <button id="80Crime">Crime</button>
-        <button id="99Documentary">Documentary</button>
-        <button id="18Drama">Drama</button>
-        <button id="10751Family">Family</button>
-        <button id="14Fantasy">Fantasy</button>
-        <button id="36History">History</button>
-        <button id="27Horror">Horror</button>
-        <button id="10402Music">Music</button>
-        <button id="9648Mystery">Mystery</button>
-        <button id="10749Romance">Romance</button>
-        <button id="878Sci-Fi">Sci-Fi</button>
-        <button id="10770Tv-Movie">Tv-Movie</button>
-        <button id="53Thriller">Thriller</button>
-        <button id="10752War">War</button>
-        <button id="37Western">Western</button>
+
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div id="navbarBasicExample" class="navbar-menu">
+            <a class="navbar-item">Home</a>
+            <a class="navbar-item">Saved Shows!</a>
         </div>
-    </section>
+      </nav>
+
+    <header>
+        <h1 class="center">WTW</h1>
+        <p class="center">Where to Watch What to Watch</p>
+    </header>
+
+    <main>
+        <!-- <div class="select">
+            <select>
+            <option>Select dropdown</option>
+            <option>With options</option>
+            <option id="28Action">Action</option>
+            <option id="12Adventure">Adventure</option>
+            <option id="16Animation">Animation</option>
+            <option id="35Comedy">Comedy</option>
+            <option id="80Crime">Crime</option>
+            <option id="27Horror">Horror</option>
+            <option id="18Drama">Drama</option>
+            <option id="10751Family">Family</option>
+            <option id="14Fantasy">Fantasy</option>
+            <option id="36History">History</option>
+            <option id="99Documentary" class="documentary">Documentary</option>
+            <option id="10402Music">Music</option>
+            <option id="9648Mystery">Mystery</option>
+            <option id="10749Romance">Romance</option>
+            <option id="878Sci-Fi">Sci-Fi</option>
+            <option id="10770Tv-Movie">Tv-Movie</option>
+            <option id="53Thriller">Thriller</option>
+            <option id="10752War">War</option>
+            <option id="37Western" class="western">Western</option>
+            </select>
+          </div> -->
+        <section class="pick-genre">
+            <div id="all-buttons">
+                <button id="28">Action</button>
+                <button id="12">Adventure</button>
+                <button id="16">Animation</button>
+                <button id="35">Comedy</button>
+                <button id="80">Crime</button>
+                <button id="27">Horror</button>
+                <button id="18">Drama</button>
+                <button id="10751">Family</button>
+                <button id="14">Fantasy</button>
+                <button id="36">History</button>
+                <button id="99">Documentary</button>
+                <button id="10402">Music</button>
+                <button id="9648">Mystery</button>
+                <button id="10749">Romance</button>
+                <button id="878">Sci-Fi</button>
+                <button id="10770">Tv-Movie</button>
+                <button id="53">Thriller</button>
+                <button id="10752">War</button>
+                <button id="37">Western</button>
+            </div>
+            <div class="center"><button>Suggest My Movie!</button></div>
+        </section>
+
+        <section class="movie-card">
+            <div class="card">
+                <div class="card-image">
+                  <figure class="image is-4by3">
+                    <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-left">
+                      <figure class="image is-48x48">
+                        <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                      </figure>
+                    </div>
+                    <div class="media-content">
+                      <p class="title is-4">John Smith</p>
+                      <p class="subtitle is-6">@johnsmith</p>
+                    </div>
+                  </div>
+              
+                  <div class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+                    <a href="#">#css</a> <a href="#">#responsive</a>
+                    <br>
+                    <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                  </div>
+                </div>
+              </div>
+        </section>
+
+        <script src="./assets/js/script.js"></script>
     </main>
 </body>
+
 </html>
