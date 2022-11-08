@@ -1,5 +1,6 @@
 ////////////////////////////////////////////////////////////////
 //getByGenre gets movie titles given a string of genre codes using the ADVANCED MOVIE SEARCH API.
+
 //list of genre codes
 {
 	"genres": [
@@ -81,10 +82,12 @@
 	  }
 	]
   }
-  
-function getByGenre() {
-	//have an event listener on a genre buttons parent and as the user clicks on the genre buttons, the string gets built. the event listener is listening to the specific click, the child, that has its own data that is the genre ID.
+  	
+ 
+  //have an event listener on a genre buttons parent and as the user clicks on the genre buttons, the string gets built. the event listener is listening to the specific click, the child, that has its own data that is the genre ID.
 	//gets a number of title IDs based on the user's (multiple) genre preferences'
+function getByGenre() {
+
 	var genreCodeString = genreCode1+","+genreCode2
 	var genreCodeString = "35, 14, 12"; //this will be passed here from user input any number of genre codes written as a string with commas
 	var genreURL =
