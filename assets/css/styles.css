@@ -1,5 +1,6 @@
 /* main color palette */
 :root {
+
 }
 
 /* Navbar */
@@ -42,6 +43,9 @@ button:hover {
 button:active {
     background-color: red;
 } 
+button:focus{
+    background-color: red;
+}
 
 .movie-card {
     display: block;
