@@ -26,36 +26,16 @@
 
     <header>
       <h1>WTW</h1>
-      <h2>Where to Watch What to Watch</h2>
-     <img id="remote" src="./remotew.png">
+      <div class="img-responsive">
+        <p class="click-me">Click Me</p>
+       <img id="remote" src="./remotew.png" style="width: 220px; height: 220px"/>
+       </div>
+      <h2>What to Watch Where to Watch</h2>
+    
     </header>
 
     <main>
     
-            <select>
-            <option>Select dropdown</option>
-            <option>With options</option>
-            <option id="28Action">Action</option>
-            <option id="12Adventure">Adventure</option>
-            <option id="16Animation">Animation</option>
-            <option id="35Comedy">Comedy</option>
-            <option id="80Crime">Crime</option>
-            <option id="27Horror">Horror</option>
-            <option id="18Drama">Drama</option>
-            <option id="10751Family">Family</option>
-            <option id="14Fantasy">Fantasy</option>
-            <option id="36History">History</option>
-            <option id="99Documentary" class="documentary">Documentary</option>
-            <option id="10402Music">Music</option>
-            <option id="9648Mystery">Mystery</option>
-            <option id="10749Romance">Romance</option>
-            <option id="878Sci-Fi">Sci-Fi</option>
-            <option id="10770Tv-Movie">Tv-Movie</option>
-            <option id="53Thriller">Thriller</option>
-            <option id="10752War">War</option>
-            <option id="37Western" class="western">Western</option>
-            </select>
-          </div> -->
       <section class="pick-genre">
         <div id="all-buttons">
           <button id="28">Action</button>
@@ -85,7 +65,7 @@
       <section class="poster">
         <div id="poster-path"> 
             <img id="poster-img"
-            src="https://image.tmdb.org/t/p/original/pgqgaUx1cJb5oZQQ5v0tNARCeBp.jpg"
+            src=""
             style="width: 300px; height: 500px"
             />
         </div>
@@ -96,11 +76,14 @@
         </div>
       </section>
       <!-- math random? can we pick differnet movie with same genre?-->
+
       <div class="poster-btns">
         <button id="new-movie">Pick Another Movie</button>
         <button id="watch-movie">Let's Watch It!</button>
       </div>
       <a href="#remote" id="reset-btn">Reset Genre</a>
+      
+      <script src="./assets/js/Haein.js"></script>
       <script src="./assets/js/script.js"></script>
       <script src="./assets/js/Jayden.js"></script>
     </main>

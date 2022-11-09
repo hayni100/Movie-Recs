@@ -1,4 +1,4 @@
-:root {
+/* :root {
     --bright_red: #DC2026;
     --dark_red: #7E1616;
     --light_yellow: #FFFEAD;
@@ -55,6 +55,7 @@ button:active {
 button:focus{
     background-color: red;
 }
+
 
 /* complete movie poster information */
 
