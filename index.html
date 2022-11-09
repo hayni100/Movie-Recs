@@ -63,20 +63,26 @@
 
       <!-- id = AMS  -->
       <section class="poster">
-        <div id="poster-path">  
+        <div id="poster-path"> 
             <img id="poster-img"
             src=""
             style="width: 300px; height: 500px"
             />
-        </div>   
-        <p id="original_title"></p>
-        <p id="overview"></p>
-        <p id="vote_average"></p>
+        </div>
+        <div class="movie-contents hide">   
+            <h3 id="original_title">Blah Blah</h3>
+            <p id="overview">blah blah blah blah, blah blah!</p>
+            <p id="vote_average">blah.blah</p>
+        </div>
       </section>
       <!-- math random? can we pick differnet movie with same genre?-->
-      <button id="new-movie">Give Me Another Movie</button>
-      <button id="watch-movie">Let's Watch It!</button>
-      <a href="">Reset Genre</a>
+
+      <div class="poster-btns">
+        <button id="new-movie">Pick Another Movie</button>
+        <button id="watch-movie">Let's Watch It!</button>
+      </div>
+      <a href="#remote" id="reset-btn">Reset Genre</a>
+      
       <script src="./assets/js/Haein.js"></script>
       <script src="./assets/js/script.js"></script>
       <script src="./assets/js/Jayden.js"></script>
