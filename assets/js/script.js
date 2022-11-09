@@ -40,16 +40,21 @@ function getTitleByGenre() {
 				title + "has now been parsed in GetTitleByGenre (our first function)"
 			);
 
-			getWatchModeId(title); //get passed to getWatch
+			originalTitle = genreObject.results[0].original_title;
+			document.querySelector("#original_title").textContent = originalTitle;
 
-			var originalTitle = genreObject.results[0].original_title;
-			var overView = genreObject.results[0].overview;
-			var voteAverage = genreObject.results[0].vote_average;
+			overView = genreObject.results[0].overview;
+			document.querySelector("#overview").textContent = overView;
+
+			voteAverage = genreObject.results[0].vote_average;
+			document.querySelector("#vote_average").textContent = voteAverage;
+
 			posterPath = genreObject.results[1].poster_path; //made global by deleting var
-			console.log(posterPath);
 			document
 				.querySelector(".poster")
-				.children[0].setAttribute("src", posterPath);
+				.children[0].children[0].setAttribute("src", posterPath);
+
+			getWatchModeId(title); //title gets passed to getWatch
 		});
 }
 getTitleByGenre(); //calling the function
