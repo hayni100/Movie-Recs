@@ -10,3 +10,23 @@
 }
 
 /* complete movie poster information */
+
+#poster_path {
+    display: flex;
+    justify-content: center;
+}
+
+#overview {
+    display: none;
+}
+
+#overview:hover {
+    display:contents; 
+    opacity: 10px;
+    background-color: var(--butter);
+    color: var(--dark_red);
+}
+
+#poster-path:hover {
+    box-shadow: 0px 0px 10px var(--butter);
+}
