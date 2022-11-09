@@ -74,7 +74,6 @@ button:focus{
 }
 
 .movie-contents {
-    /* visibility: hidden; */
     background-color: rgba(126,22,22,.75);
     color: var(--white);
     cursor: pointer;
@@ -82,16 +81,11 @@ button:focus{
     height: 500px;
     position:absolute;
     top:20px;
-    left: 329px;
+    left: 39.60%;
 }
-/* 
-.hide {
-    display: none;
-} */
 
 
 .movie-contents:hover {
-    /* visibility: visible; */
     box-shadow: 0px 0px 10px var(--butter);
     cursor: pointer;
 }
