@@ -1,18 +1,30 @@
 /* main color palette */
 :root {
+    --bright_red: #DC2026;
+    --dark_red: #7E1616;
+    --light_yellow: #FFFEAD;
+    --butter: #FCC252;
+    --white: #FDFCFA;
+    --grey: #C0C1C1;
+    --background_color: black;
+    background-color: var(--background_color);
 }
 
-/* Navbar */
-.navbar-menu {
-    display: flex;
-    justify-content: space-between;
-    background-color: maroon;
+h1 {
+    font-size: 400px;
+    color: var(--dark_red);
+    text-align: center;
+    font-family: 'Rampart One', cursive;
 }
 
-/* class for centering */
-.center {
-    display: flex;
-    justify-content: center;
+h2 {
+    font-size: 30px;
+    font-family: 'Fuzzy Bubbles', cursive;
+    color: var(--bright_red);
+    padding: 20px;
+    text-align: center;
+
+
 }
 
 /* Buttons */
@@ -42,10 +54,6 @@ button:active {
     background-color: red;
 }
 
-.movie-card {
-    display: block;
-    max-width: 20%;
-}
 
 /* phone size */
 @media (max-width: 992px) {
