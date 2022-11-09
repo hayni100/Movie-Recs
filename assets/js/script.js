@@ -1,18 +1,28 @@
+var buttonContainerEl = document.querySelector("#all-buttons");
 var posterPath = null;
-////////////////////////////////////////////////////////////////
-//getTitleByGenre gets movie titles given a string of genre codes using the ADVANCED MOVIE SEARCH API.
 
-var actionButton = document.getElementById("28"); //28 is the id for "action movie genre"
+//gets the value of the ID of the div that has the button that was clicked
+buttonContainerEl.addEventListener("click", grabData);
+
+function grabData(event) {
+	console.log(event.target.dataset.genreid);
+	console.log(event.target.dataset);
+	var genreID = event.target.dataset.genreid;
+	getTitleByGenre(genreID);
+}
+///var actionButtonEl = document.getElementById("28"); //28 is the id for "action movie genre"
 function printConsole() {
 	console.log("test");
 }
-actionButton.addEventListener("click", printConsole);
+
+//	var genreID = event.target.dataset.genreID; //records the ivalue (question number, basically)
+
 //have an event listener on a genre buttons parent and as the user clicks on the genre buttons, the string gets built. the event listener is listening to the specific click, the child, that has its own data that is the genre ID.
 //gets a number of title IDs based on the user's (multiple) genre preferences'
 
-function getTitleByGenre() {
+function getTitleByGenre(genreID) {
 	//gets a movie title given a genreCodeString
-	var genreCodeString = "28,"; //this is an example of what will be passed here from user input any number of genre codes written as a string with commas
+	var genreCodeString = genreID; //this is an example of what will be passed here from user input any number of genre codes written as a string with commas
 	var genreURL =
 		"https://advanced-movie-search.p.rapidapi.com/discover/movie?with_genres=" +
 		genreCodeString +
@@ -34,22 +44,25 @@ function getTitleByGenre() {
 		})
 		.then(function (genreObject) {
 			console.log(genreObject);
-			//I have no idea why putting this inside a function is helping
-			var title = genreObject.results[1].title;
+			var randomIndex = Math.floor(Math.random() * genreObject.results.length);
+			var title = genreObject.results[randomIndex].title;
+
+			console.log(randomIndex);
+
 			console.log(
 				title + "has now been parsed in GetTitleByGenre (our first function)"
 			);
 
-			originalTitle = genreObject.results[0].original_title;
+			originalTitle = genreObject.results[randomIndex].original_title;
 			document.querySelector("#original_title").textContent = originalTitle;
 
-			overView = genreObject.results[0].overview;
+			overView = genreObject.results[randomIndex].overview;
 			document.querySelector("#overview").textContent = overView;
 
-			voteAverage = genreObject.results[0].vote_average;
+			voteAverage = genreObject.results[randomIndex].vote_average;
 			document.querySelector("#vote_average").textContent = voteAverage;
 
-			posterPath = genreObject.results[1].poster_path; //made global by deleting var
+			posterPath = genreObject.results[randomIndex].poster_path; //made global by deleting var
 			document
 				.querySelector(".poster")
 				.children[0].children[0].setAttribute("src", posterPath);
