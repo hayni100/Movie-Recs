@@ -12,7 +12,7 @@ actionButton.addEventListener("click", printConsole);
 
 function getTitleByGenre() {
 	//gets a movie title given a genreCodeString
-	var genreCodeString = "12,"; //this is an example of what will be passed here from user input any number of genre codes written as a string with commas
+	var genreCodeString = "28,"; //this is an example of what will be passed here from user input any number of genre codes written as a string with commas
 	var genreURL =
 		"https://advanced-movie-search.p.rapidapi.com/discover/movie?with_genres=" +
 		genreCodeString +
@@ -42,14 +42,14 @@ function getTitleByGenre() {
 
 			getWatchModeId(title); //get passed to getWatch
 
-			var originalTitle = genreObject.results[0].original_title; //this item must be passed THROUGH getWatchModeId (where nothing happens to them) AND to getStreamSources (where they will be appended to the DOM)
-			posterPath = genreObject.results[0].poster_path; //this item must be passed THROUGH getWatchModeId (where nothing happens to them) AND to getStreamSources (where they will be appended to the DOM)
-			var overView = genreObject.results[0].overview; //this item must be passed THROUGH getWatchModeId (where nothing happens to them) AND to getStreamSources (where they will be appended to the DOM)
-			var voteAverage = genreObject.results[0].vote_average; //this item must be passed THROUGH getWatchModeId (where nothing happens to them) AND to getStreamSources (where they will be appended to the DOM)
+			var originalTitle = genreObject.results[0].original_title;
+			var overView = genreObject.results[0].overview;
+			var voteAverage = genreObject.results[0].vote_average;
+			posterPath = genreObject.results[1].poster_path; //made global by deleting var
 			console.log(posterPath);
 			document
-				.querySelector(".card-image")
-				.children[0].children[0].setAttribute("src", posterPath);
+				.querySelector(".poster")
+				.children[0].setAttribute("src", posterPath);
 		});
 }
 getTitleByGenre(); //calling the function
