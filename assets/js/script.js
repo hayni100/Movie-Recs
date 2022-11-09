@@ -1,3 +1,4 @@
+var posterPath = null;
 ////////////////////////////////////////////////////////////////
 //getTitleByGenre gets movie titles given a string of genre codes using the ADVANCED MOVIE SEARCH API.
 
@@ -11,7 +12,7 @@ actionButton.addEventListener("click", printConsole);
 
 function getTitleByGenre() {
 	//gets a movie title given a genreCodeString
-	var genreCodeString = "14,"; //this is an example of what will be passed here from user input any number of genre codes written as a string with commas
+	var genreCodeString = "12,"; //this is an example of what will be passed here from user input any number of genre codes written as a string with commas
 	var genreURL =
 		"https://advanced-movie-search.p.rapidapi.com/discover/movie?with_genres=" +
 		genreCodeString +
@@ -33,18 +34,23 @@ function getTitleByGenre() {
 		})
 		.then(function (genreObject) {
 			console.log(genreObject);
-			function makeVar() {
-				//
-				//I have no idea why putting this inside a function is helping
-				var title = genreObject.results[0].title;
-				console.log(
-					title + "has now been parsed in GetTitleByGenre (our first function)"
-				);
-				getWatchModeId(title);
-			}
-			makeVar();
+			//I have no idea why putting this inside a function is helping
+			var title = genreObject.results[1].title;
+			console.log(
+				title + "has now been parsed in GetTitleByGenre (our first function)"
+			);
+
+			getWatchModeId(title); //get passed to getWatch
+
+			var originalTitle = genreObject.results[0].original_title; //this item must be passed THROUGH getWatchModeId (where nothing happens to them) AND to getStreamSources (where they will be appended to the DOM)
+			posterPath = genreObject.results[0].poster_path; //this item must be passed THROUGH getWatchModeId (where nothing happens to them) AND to getStreamSources (where they will be appended to the DOM)
+			var overView = genreObject.results[0].overview; //this item must be passed THROUGH getWatchModeId (where nothing happens to them) AND to getStreamSources (where they will be appended to the DOM)
+			var voteAverage = genreObject.results[0].vote_average; //this item must be passed THROUGH getWatchModeId (where nothing happens to them) AND to getStreamSources (where they will be appended to the DOM)
+			console.log(posterPath);
+			document
+				.querySelector(".card-image")
+				.children[0].children[0].setAttribute("src", posterPath);
 		});
-	getWatchModeId(); //"title" seems to be passed to"
 }
 getTitleByGenre(); //calling the function
 
@@ -74,6 +80,7 @@ function getWatchModeId(title) {
 			return response.json();
 		})
 		.then(function (watchIdObject) {
+			console.log(watchIdObject);
 			var watchModeId = watchIdObject.title_results[0].id; //use this single line to grab just the first title Id
 			// var watchModesArray = [] //if we want more than one title result turn on this array builder code
 			// for (let i = 0; i < 5; i++) {
@@ -81,10 +88,9 @@ function getWatchModeId(title) {
 			// 	watchModesArray.push(watchModeId);
 			//}
 			//var IdString = watchModesArray.toString();//if we want more than one title result turn this on also and pass it down as a parameter somehow
-			getStreamSources(watchModeId);
+			getStreamSources(JSON.stringify(watchModeId));
 		});
 }
-getWatchModeId(); //calling the function
 
 //getStreamSources takes a seven digit Watchmode ID and give where to watch, buy or rent, and price. It also uses the watchmode API.
 function getStreamSources(watchModeId) {
@@ -111,31 +117,31 @@ function getStreamSources(watchModeId) {
 			return response.json();
 		})
 		.then(function (sourcesObject) {
-			console.log(
-				"This is the retrieved JSON after being parsed in getStreamSources (the third and final API call): " +
-					sourcesObject
-			);
-			var numOfSources = 1;
+			console.log(sourcesObject);
+			console.log(sourcesObject[0].type); //testing the parsed object. sholud return "buy" or "rent"
+			var streamSource = sourcesObject[0].name;
+			var streamPrice = sourcesObject[0].price;
+			var BuyOrRent = sourcesObject[0].type;
 
-			for (let i = 0; i < numOfSources; i++) {
-				var streamSource = sourcesObject[i].name;
-				var streamPrice = sourcesObject[i].price;
-				var BuyOrRent = sourcesObject[i].type;
-				console.log(
-					"These are the getStreamSources: " +
-						streamSource +
-						"  " +
-						BuyOrRent +
-						"  " +
-						streamPrice
-				);
-			}
+			// var numOfSources = 1;
+			// for (let i = 0; i < numOfSources; i++) {
+			// 	var streamSource = sourcesObject[i].name;
+			// 	var streamPrice = sourcesObject[i].price;
+			// 	var BuyOrRent = sourcesObject[i].type;
+			// 	console.log(
+			// 		"These are the getStreamSources: " +
+			// 			streamSource +
+			// 			"  " +
+			// 			BuyOrRent +
+			// 			"  " +
+			// 			streamPrice
+			// 	);
+			// }
 		});
 	//probably we should pass the title codes to the next function somehow
 }
-getStreamSources(); //call the function!
 
-//list of genre codes
+//expand for list of genre codes
 // {
 // 	"genres": [
 // 	  {
