@@ -102,27 +102,29 @@ function getStreamSources(watchModeId) {
 		})
 		.then(function (sourcesObject) {
 			console.log(sourcesObject);
-			console.log(sourcesObject[0].type); //testing the parsed object. sholud return "buy" or "rent"
-			var streamSource = "Zamazon"; //sourcesObject[0].name;
-			var streamPrice = "one billion"; //sourcesObject[0].price;
-			var BuyOrRent = "Rent"; //sourcesObject[0].type;
+			// var streamSource = "Zamazon"; //sourcesObject[0].name;
+			// var streamPrice = "three hundred pennies"; //sourcesObject[0].price;
+			// var ownership = "Rent-to-own"; //sourcesObject[0].type;
+			// // document.querySelector("#streamSource").textContent = streamSource;
+			// // document.querySelector("#streamPrice").textContent = streamSource;
+			//document.querySelector("#ownership").textContent = ownership;
 
-			// var numOfSources = 1;
-			// for (let i = 0; i < numOfSources; i++) {
-			// 	var streamSource = sourcesObject[i].name;
-			// 	var streamPrice = sourcesObject[i].price;
-			// 	var BuyOrRent = sourcesObject[i].type;
-			// 	console.log(
-			// 		"These are the getStreamSources: " +
-			// 			streamSource +
-			// 			"  " +
-			// 			BuyOrRent +
-			// 			"  " +
-			// 			streamPrice
-			// 	);
-			// }
+			for (let i = 0; i < sourcesObject.length; i++) {
+				var streamSource = sourcesObject[i].name;
+				var streamPrice = sourcesObject[i].price;
+				var ownership = sourcesObject[i].type;
+				var streamSentence =
+					ownership +
+					" this movie on " +
+					streamSource +
+					" for " +
+					streamPrice +
+					"------";
+				console.log(streamSentence);
+				document.querySelector("#streamSentence").textContent =
+					append.streamSentence; //not sure if this will work. we need to append the new streamSentence to the existing streamSentence every interation.
+			}
 		});
-	//probably we should pass the title codes to the next function somehow
 }
 
 //expand for list of genre codes
