@@ -29,7 +29,7 @@ h2 {
 #remote {
    display: flex;
    flex-direction: row;
-   justify-content: space-around;
+   align-items: center;
 }
 /* Buttons */
 #all-buttons {
