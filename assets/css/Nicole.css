@@ -1,4 +1,3 @@
-/*  */
 :root {
     --bright_red: #DC2026;
     --dark_red: #7E1616;
@@ -7,6 +6,50 @@
     --white: #FDFCFA;
     --grey: #C0C1C1; 
     --background_color: black;
+}
+
+h1 {
+    font-size: 400px;
+    color: var(--dark_red);
+    text-align: center;
+    font-family: 'Rampart One', cursive;
+}
+
+h2 {
+    font-size: 30px;
+    font-family: 'Fuzzy Bubbles', cursive;
+    color: var(--bright_red);
+    padding: 20px;
+    text-align: center;
+
+
+}
+
+/* Buttons */
+#all-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+button {
+    font-size: 1.2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* width: 10%;  */
+    padding: 20px;
+    border-radius: 1.5rem;
+    /* margin: 20px; */
+    color: white;
+    background-color: darkred;
+    text-align: center;
+} 
+
+button:hover { 
+    box-shadow: 0px 0px 10px maroon;
+}
+
+button:active {
+    background-color: red;
 }
 
 /* complete movie poster information */
@@ -29,4 +72,15 @@
 
 #poster-path:hover {
     box-shadow: 0px 0px 10px var(--butter);
+}
+
+
+/* phone size */
+@media (max-width: 992px) {
+
+}
+
+/* Tablet size */
+@media (max-width: 768px) {
+
 }
