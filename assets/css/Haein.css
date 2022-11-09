@@ -8,13 +8,17 @@
     --background_color: black;
     background-color: var(--background_color);
 }
-
+header {
+    display: flex;
+    flex-direction: column;
+}
 h1 {
     font-size: 400px;
     color: var(--dark_red);
     text-align: center;
     font-family: 'Rampart One', cursive;
-    margin: 0px;
+    position: relative;
+    top: -120px;
 }
 
 h2 {
@@ -22,20 +26,37 @@ h2 {
     font-family: 'Fuzzy Bubbles', cursive;
     color: var(--bright_red);
     text-align: center;
-
-
+    position: relative;
+    top: -140px;
+}
+.img-responsive {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    top: -160px;
+    
+}
+.click-me {
+    color: #FCC252;
+    font-size: 20px;
+    font-family: 'Fuzzy Bubbles', cursive;
 }
 
-#remote {
-   display: flex;
-   flex-direction: row;
-   align-items: center;
+#remote:hover { 
+    transform: scale(1.5);
+}
+
+#remote:active {
+    transform: scale(1.5);
 }
 /* Buttons */
 #all-buttons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 20px;
 }
 
 button {
