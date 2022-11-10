@@ -121,8 +121,7 @@ function getStreamSources(watchModeId) {
 					streamPrice +
 					"------";
 				console.log(streamSentence);
-				document.querySelector("#streamSentence").textContent =
-					append.streamSentence; //not sure if this will work. we need to append the new streamSentence to the existing streamSentence every interation.
+				document.querySelector("#streamSentence").textContent = streamSentence;
 			}
 		});
 }
