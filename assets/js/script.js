@@ -73,12 +73,10 @@ function getWatchModeId(title) {
 		method: "GET",
 		headers: {
 
-							
-	  	"X-RapidAPI-Key": "7158BxGEKClB0w3h19emEx2CgaspYq6sdZY5mhNX",// 
-
+	  	"X-RapidAPI-Key": "7158BxGEKClB0w3h19emEx2CgaspYq6sdZY5mhNX",
 		"X-RapidAPI-Host": "watchmode.p.rapidapi.com",
 		},
-	};
+	};console.log(watchIdURL);
 	fetch(watchIdURL, options2)
 		.then(function (response) {
 			if (!response.ok) {
@@ -90,6 +88,7 @@ function getWatchModeId(title) {
 			console.log(watchIdObject);
 			var watchModeId = watchIdObject.title_results[0].id; //keeping the array index at zero seems to get us the most relevant title, i.e. "shrek" not "shrek 2"
 			getStreamSources(JSON.stringify(watchModeId));
+		
 		});
 }
 
