@@ -1,6 +1,24 @@
 var buttonContainerEl = document.querySelector("#all-buttons");
 var posterPath = null; //posterPath gets used during getTitleByGenre but needs to be global, so its up here.
 
+//make a submit button that kicks off the code
+
+//localStorage.clear(); 
+function createEmptyStorage() {
+localStorage.setItem("genreIds","[]")
+}
+createEmptyStorage();
+
+buttonContainerEl.addEventListener("click", grabData);
+function grabData(event) 
+{ 
+var localGenreIds= JSON.parse(localStorage.getItem("genreIds"));//this an array made from the string in local storage
+		var genreID = event.target.dataset.genreid;
+		localGenreIds.push(genreID)//this will push genreID onto the end of the array. 
+		console.log("genreID after a click:  "+ genreID);
+			localStorage.setItem("genreIds", JSON.stringify(localGenreIds));//localGenreIds is an array data typ
+}
+
 function getTitleByGenre(genreID) {
 	//gets a movie title given a genreCodeString
 	var genreCodeString = genreID; //for now genreCodeStriing just gets genreID, a single genre ID, but can already take a series of genre codes separated by commas. genreCodeString could be reset to assemble a string from local storage
@@ -13,7 +31,8 @@ function getTitleByGenre(genreID) {
 		//This is information the API needs for the call
 		method: "GET",
 		headers: {
-			"X-RapidAPI-Key": "ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790",
+		
+			"X-RapidAPI-Key": "ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790",//Rhys' full subscription to advanced movie search
 			"X-RapidAPI-Host": "advanced-movie-search.p.rapidapi.com",
 		},
 	};
@@ -41,7 +60,7 @@ function getTitleByGenre(genreID) {
 			document
 				.querySelector(".poster")
 				.children[0].children[0].setAttribute("src", posterPath);
-			//getWatchModeId(title); //calls the next API call function. "title" is the only var from here that it will need.
+			getWatchModeId(title); //calls the next API call function. "title" is the only var from here that it will need.
 		});
 }
 getTitleByGenre(); //calling the function
@@ -53,7 +72,7 @@ function getWatchModeId(title) {
 	const options2 = {
 		method: "GET",
 		headers: {
-			"X-RapidAPI-Key": "ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790",
+			"X-RapidAPI-Key": "J51k4yL3gPBTlALl53uNJKA8cLHHY7IPpwUSNVrp",//nicoles free trial on the expensive one
 			"X-RapidAPI-Host": "watchmode.p.rapidapi.com",
 		},
 	};
@@ -84,8 +103,7 @@ function getStreamSources(watchModeId) {
 		method: "GET",
 		headers: {
 			regions: "US",
-			//"X-RapidAPI-Key": "ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790",
-			"X-RapidAPI-Key": "ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790",
+			  "X-RapidAPI-Key": "J51k4yL3gPBTlALl53uNJKA8cLHHY7IPpwUSNVrp",//nicoles free trial on the expensive one
 			"X-RapidAPI-Host": "watchmode.p.rapidapi.com",
 		},
 	};
@@ -98,12 +116,12 @@ function getStreamSources(watchModeId) {
 		})
 		.then(function (sourcesObject) {
 			console.log(sourcesObject);
-			// var streamSource = "Zamazon"; //sourcesObject[0].name;
-			// var streamPrice = "three hundred pennies"; //sourcesObject[0].price;
-			// var ownership = "Rent-to-own"; //sourcesObject[0].type;
-			// // document.querySelector("#streamSource").textContent = streamSource;
-			// // document.querySelector("#streamPrice").textContent = streamSource;
-			//document.querySelector("#ownership").textContent = ownership;
+			 //var streamSource = "Zamazon"; //sourcesObject[0].name;
+			//var streamPrice = "three hundred pennies"; //sourcesObject[0].price;
+			//var ownership = "Rent-to-own"; //sourcesObject[0].type;
+			 document.querySelector("#streamSource").textContent = streamSource;
+			 document.querySelector("#streamPrice").textContent = streamSource;
+			document.querySelector("#ownership").textContent = ownership;
 
 			for (let i = 0; i < sourcesObject.length; i++) {
 				var streamSource = sourcesObject[i].name;
