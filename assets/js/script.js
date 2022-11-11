@@ -12,13 +12,14 @@ createEmptyStorage();
 buttonContainerEl.addEventListener("click", grabData);
 function grabData(event) 
 { 
-var localGenreIds= JSON.parse(localStorage.getItem("genreIds"));//this an array made from the string in local storage
-var genreID = event.target.dataset.genreid;
-localGenreIds.push(genreID)//this will push genreID onto the end of the array. 
-console.log("genreID after a click:  "+ genreID);
+var localGenreIds= JSON.parse(localStorage.getItem("genreIds"));//this is an array list of genre ids already in the local storage
+var genreID = event.target.dataset.genreid;//gets the id code from the button that was clicked
+localGenreIds.push(genreID)//this will push genreID onto the end of the list from local storage. 
+console.log("the genreID after a click:  "+ genreID);
 localStorage.setItem("genreIds", JSON.stringify(localGenreIds));//localGenreIds is an array 
 //data typ
 var genreString= localGenreIds.toString();//turns 
+console.log("the string in local storage: "+genreString)
 getTitleByGenre(genreString);//passes our first API call function the string of genre codes that it needs
 }
 
@@ -63,7 +64,7 @@ function getTitleByGenre(genreString) {
 			getWatchModeId(title); //calls the next API call function. "title" is the only var from here that it will need.
 		});
 }
-getTitleByGenre(); //calling the function
+//getTitleByGenre(); //calling the function
 
 function getWatchModeId(title) {
 	var watchIdURL = //this is the url that we need for the next API call
