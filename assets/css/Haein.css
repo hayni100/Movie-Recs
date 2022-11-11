@@ -21,13 +21,13 @@ h1 {
     top: -120px;
 }
 
-#WTW {
+#what-where-to-watch {
     font-size: 30px;
     font-family: 'Fuzzy Bubbles', cursive;
     color: var(--bright_red);
     text-align: center;
     position: relative;
-    top: -140px;
+    top: -215px;
 }
 .img-responsive {
     display: flex;
@@ -35,7 +35,7 @@ h1 {
     align-items: center;
     justify-content: space-around;
     position: relative;
-    top: -160px;
+    top: -240px;
     
 }
 .click-me {
