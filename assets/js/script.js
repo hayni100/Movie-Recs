@@ -13,25 +13,27 @@ buttonContainerEl.addEventListener("click", grabData);
 function grabData(event) 
 { 
 var localGenreIds= JSON.parse(localStorage.getItem("genreIds"));//this an array made from the string in local storage
-		var genreID = event.target.dataset.genreid;
-		localGenreIds.push(genreID)//this will push genreID onto the end of the array. 
-		console.log("genreID after a click:  "+ genreID);
-			localStorage.setItem("genreIds", JSON.stringify(localGenreIds));//localGenreIds is an array data typ
+var genreID = event.target.dataset.genreid;
+localGenreIds.push(genreID)//this will push genreID onto the end of the array. 
+console.log("genreID after a click:  "+ genreID);
+localStorage.setItem("genreIds", JSON.stringify(localGenreIds));//localGenreIds is an array 
+//data typ
+var genreString= localGenreIds.toString();//turns 
+getTitleByGenre(genreString);//passes our first API call function the string of genre codes that it needs
 }
 
-function getTitleByGenre(genreID) {
+function getTitleByGenre(genreString) {
 	//gets a movie title given a genreCodeString
-	var genreCodeString = genreID; //for now genreCodeStriing just gets genreID, a single genre ID, but can already take a series of genre codes separated by commas. genreCodeString could be reset to assemble a string from local storage
+	//var genreCodeString = genreID; //for now genreCodeStriing just gets genreID, a single genre ID, but can already take a series of genre codes separated by commas. genreCodeString could be reset to assemble a string from local storage
 	var genreURL = //This is the url needed for our first API call for movies by genre.
 		"https://advanced-movie-search.p.rapidapi.com/discover/movie?with_genres=" +
-		genreCodeString +
+		genreString +
 		"&page=1";
 
 	const options = {
 		//This is information the API needs for the call
 		method: "GET",
 		headers: {
-		
 			"X-RapidAPI-Key": "ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790",//Rhys' full subscription to advanced movie search
 			"X-RapidAPI-Host": "advanced-movie-search.p.rapidapi.com",
 		},
@@ -72,8 +74,11 @@ function getWatchModeId(title) {
 	const options2 = {
 		method: "GET",
 		headers: {
-			"X-RapidAPI-Key": "J51k4yL3gPBTlALl53uNJKA8cLHHY7IPpwUSNVrp",//nicoles free trial on the expensive one
-			"X-RapidAPI-Host": "watchmode.p.rapidapi.com",
+
+							
+	  	"X-RapidAPI-Key": "7158BxGEKClB0w3h19emEx2CgaspYq6sdZY5mhNX",// 
+
+		"X-RapidAPI-Host": "watchmode.p.rapidapi.com",
 		},
 	};
 	fetch(watchIdURL, options2)
@@ -103,8 +108,12 @@ function getStreamSources(watchModeId) {
 		method: "GET",
 		headers: {
 			regions: "US",
-			  "X-RapidAPI-Key": "J51k4yL3gPBTlALl53uNJKA8cLHHY7IPpwUSNVrp",//nicoles free trial on the expensive one
-			"X-RapidAPI-Host": "watchmode.p.rapidapi.com",
+		"X-RapidAPI-Key": "7158BxGEKClB0w3h19emEx2CgaspYq6sdZY5mhNX",//a new key from haein', 46 characters long
+		"X-RapidAPI-Host": "watchmode.p.rapidapi.com",
+	
+
+			//"X-RapidAPI-Key": "FevleXdIzsv7SUpr6vtL29ukYk8KgR2gWFlDGEB2",//jaydens 40 characters long
+			//"X-RapidAPI-Host": "watchmode.p.rapidapi.com",
 		},
 	};
 	fetch(getStreamURL, options)
