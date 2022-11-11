@@ -13,6 +13,7 @@ header {
     display: flex;
     flex-direction: column;
 }
+
 h1 {
     font-size: 400px;
     color: var(--dark_red);
@@ -30,6 +31,7 @@ h1 {
     position: relative;
     top: -215px;
 }
+
 .img-responsive {
     display: flex;
     flex-direction: column;
@@ -37,21 +39,23 @@ h1 {
     justify-content: space-around;
     position: relative;
     top: -240px;
-    
+
 }
+
 .click-me {
     color: #FCC252;
     font-size: 20px;
     font-family: 'Fuzzy Bubbles', cursive;
 }
 
-#remote:hover { 
+#remote:hover {
     transform: scale(1.5);
 }
 
 #remote:active {
     transform: scale(1.5);
 }
+
 /* Buttons */
 #all-buttons {
     display: flex;
@@ -70,9 +74,9 @@ button {
     color: white;
     background-color: darkred;
     text-align: center;
-} 
+}
 
-button:hover { 
+button:hover {
     box-shadow: 0px 0px 10px maroon;
 }
 
@@ -80,17 +84,54 @@ button:active {
     background-color: red;
 }
 
+#streaming-avail {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+    margin: 60px;
+    border-style: dotted;
+    border-color: var(--light_yellow);
+}
+
+/* experiment with toggle */
+/* .movie-contents:before {
+    visibility: hidden;
+    background-color: rgba(126,22,22,.75);
+    color: var(--white);
+    cursor: pointer;
+    padding-top: 40px;
+    width: 275px;
+    height: 450px;
+    position:absolute;
+    top:20px;
+    left: 40.5%;
+}
+
+#poster-path:hover + .movie-contents {
+    visibility: visible;
+    box-shadow: 0px 0px 10px var(--light_yellow);
+    cursor: pointer;
+}
+
+#poster-path:hover + .movie-contents {
+    visibility: visible;
+    box-shadow: 0px 0px 10px var(--light_yellow);
+    cursor: pointer;
+} */
 
 /* phone size */
 @media (max-width: 992px) {
-    :root{
+    :root {
         background-color: rgb(24, 1, 1);
-}
+    }
 
     h1 {
         font-size: 25rem;
     }
-/* Tablet size */
-@media (max-width: 768px) {
 
+    /* Tablet size */
+    @media (max-width: 768px) {}
 }
