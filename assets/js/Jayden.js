@@ -6,6 +6,6 @@ function printConsole() {
 
 watchItButton.addEventListener("click", printConsole);
 
-function store() {
-    localStorage.setItem("")
-}
+var save = localStorage.setItem("saved_show");
+
+
