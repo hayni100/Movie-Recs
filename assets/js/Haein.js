@@ -1,6 +1,15 @@
 var remote = document.querySelector("#remote");
-var allButtons = document.querySelector("#all-buttons");
+var pickGenre = document.querySelector(".pick-genre");
+var movieTicket = document.querySelector("#suggest-movie-btn")
+var suggestedMovie = document.querySelector("#your-movie");
 
+// clickable buttons
 remote.addEventListener("click", function() {
-allButtons.scrollIntoView(true);
+pickGenre.scrollIntoView(true);
 });
+
+movieTicket.addEventListener("click", function() {
+    suggestedMovie.scrollIntoView(true);
+    });
+
+    

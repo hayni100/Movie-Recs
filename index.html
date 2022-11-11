@@ -13,6 +13,12 @@
     />
     <link
       rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
     />
     <link rel="stylesheet" href="./assets/css/styles.css" />
@@ -24,19 +30,20 @@
 
   <body>
 
-    <header>
+    <header id="header">
       <h1>WTW</h1>
       <div class="img-responsive">
         <p class="click-me">Click Me</p>
        <img id="remote" src="./remotew.png" style="width: 220px; height: 220px"/>
        </div>
-      <h2>What to Watch Where to Watch</h2>
+      <h2 id="WTW">What to Watch Where to Watch</h2>
     
     </header>
 
     <main>
     
       <section class="pick-genre">
+        <h2 id="genre-text">Pick your Genre(s)!</h2>
         <div id="all-buttons">
           <button id="28">Action</button>
           <button id="12">Adventure</button>
@@ -58,15 +65,20 @@
           <button id="10752">War</button>
           <button id="37">Western</button>
         </div>
-        <div class="center"><button>Suggest My Movie!</button></div>
-      </section>
+        <div class="center">
+            <img src="./film_projectone.png" alt="roll of film" style="width: 300px; height: 150px" id="film-img"/>
+            <h2 id="suggest-movie-btn">Suggest My Movie!</h2>
+        </div>
+    </section>
 
       <!-- id = AMS  -->
+    <section class="poster-section">
+      <h2 id="your-movie">Your Movie:</h2>
       <section class="poster">
         <div id="poster-path"> 
             <img id="poster-img"
             src=""
-            style="width: 300px; height: 500px"
+            style="width: 275px; height: 450px"
             />
         </div>
         <div class="movie-contents">   
@@ -75,13 +87,14 @@
             <p id="vote_average"></p>
         </div>
       </section>
+    </section>
       <!-- math random? can we pick differnet movie with same genre?-->
 
       <div class="poster-btns">
         <button id="new-movie">Pick Another Movie</button>
         <button id="watch-movie">Let's Watch It!</button>
       </div>
-      <a href="#remote" id="reset-btn">Reset Genre</a>
+      <a href="#header" id="reset-btn">Reset Genre</a>
       
       <script src="./assets/js/Haein.js"></script>
       <script src="./assets/js/script.js"></script>
