@@ -1,29 +1,6 @@
 var buttonContainerEl = document.querySelector("#all-buttons");
 var posterPath = null; //posterPath gets used during getTitleByGenre but needs to be global, so its up here.
 
-
-
-///Proposed expansion of genre buttons////////////////////////////////////////////////// Rhys thinks it would be cool to recommend movies based on multiple preferred genres. the following is a possible expanded version of grabData. instead of just running our program on one genre button, it will allow the user to select multiple genre buttons before submitting them. It could use buttons that toggle colors when pressed and unpressed. maybe it should use local storage to store the genre values.
-//localStorage.clear(); //start with a clean slate is optional in case buttons are not toggles. 
-function createEmptyStorage() {
-localStorage.setItem("genreIds","[]")
-}
-createEmptyStorage();
-
-
-buttonContainerEl.addEventListener("click", grabData);
-function grabData(event) 
-{ 
-var localGenreIds= JSON.parse(localStorage.getItem("genreIds"));//this an array made from the string in local storage
-		var genreID = event.target.dataset.genreid;
-		localGenreIds.push(genreID)//this will push genreID onto the end of the array. 
-		console.log("genreID after a click:  "+ genreID);
-			localStorage.setItem("genreIds", JSON.stringify(localGenreIds));//localGenreIds is an array data typ
-}
-
-//build a string from whats in local storage
-
-
 function getTitleByGenre(genreID) {
 	//gets a movie title given a genreCodeString
 	var genreCodeString = genreID; //for now genreCodeStriing just gets genreID, a single genre ID, but can already take a series of genre codes separated by commas. genreCodeString could be reset to assemble a string from local storage
