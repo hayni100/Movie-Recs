@@ -4,68 +4,25 @@ var posterPath = null; //posterPath gets used during getTitleByGenre but needs t
 
 
 ///Proposed expansion of genre buttons////////////////////////////////////////////////// Rhys thinks it would be cool to recommend movies based on multiple preferred genres. the following is a possible expanded version of grabData. instead of just running our program on one genre button, it will allow the user to select multiple genre buttons before submitting them. It could use buttons that toggle colors when pressed and unpressed. maybe it should use local storage to store the genre values.
-localStorage.setItem(28,"");
-localStorage.setItem(12,"");
-localStorage.setItem(35,"");
-localStorage.setItem(80,"");
-localStorage.setItem(27,"");
-localStorage.setItem(18,"");
-localStorage.setItem(10751,"");
-localStorage.setItem(14,"");
-localStorage.setItem(36,"");
-localStorage.setItem(99,"");
-localStorage.setItem(10402,"");
-localStorage.setItem(9648,"");
-localStorage.setItem(10749,"");
-localStorage.setItem(878,"");
-localStorage.setItem(10770,"");
-localStorage.setItem(53,"");
-localStorage.setItem(10752,"");
-localStorage.setItem(37,"");
+//localStorage.clear(); //start with a clean slate is optional in case buttons are not toggles. 
+function createEmptyStorage() {
+localStorage.setItem("genreIds","[]")
+}
+createEmptyStorage();
+
+
 buttonContainerEl.addEventListener("click", grabData);
 function grabData(event) 
-{ //could run whenever a genre buttin is clicked, updates what buttons are clicked to local storage
-	function grabData(event) {
-		//if button is clicked //put an if statment here
+{ 
+var localGenreIds= JSON.parse(localStorage.getItem("genreIds"));//this an array made from the string in local storage
 		var genreID = event.target.dataset.genreid;
-			localStorage.setItem(genreID, genreID);//no reason the keys for the genreId's sholdn't just be equal to the genre ids themselves. 
-		//if button has been UNclicked -//put an else statement here
-			localStorage.setItem(genreID, "")
-	}
+		localGenreIds.push(genreID)//this will push genreID onto the end of the array. 
+		console.log("genreID after a click:  "+ genreID);
+			localStorage.setItem("genreIds", JSON.stringify(localGenreIds));//localGenreIds is an array data typ
 }
-//the following will construct a string out of what genre codes are saved in values in local storage. getItem(28) gets the value of the 28 key wich will either be empty ("") or "28".
-let Action = localStorage.getItem(28);
-let Adventure = localStorage.getItem(12);
-let Comedy= localStorage.getItem(35); 
-let Crime= localStorage.getItem(80); 
-let Horror= localStorage.getItem(27); 
-let Drama= localStorage.getItem(18); 
-let Family= localStorage.getItem(10751); 
-let Fantasy= localStorage.getItem(14); 
-let hiStory= localStorage.getItem(36); 
-let Documentary= localStorage.getItem(99); 
-let Music= localStorage.getItem(10402); 
-let Mystery= localStorage.getItem(9648); 
-let Romance= localStorage.getItem(10749); 
-let SciFi= localStorage.getItem(878);
-let TvMovie= localStorage.getItem(10770); 
-let Thriller= localStorage.getItem(53); 
-let War= localStorage.getItem(10752); 
-let Western= localStorage.getItem(37); 
 
-var string = Action+Adventure+Comedy+Crime+Horror+Drama+Family+Fantasy+hisStory+Documentary+Music+Mystery+Romance+SciFi+TvMovie+Thriller+War+Western;
+//build a string from whats in local storage
 
-
-
-
-
-
-//here the var genreID gets the value of the genre id associated with the movie genre showing on the button that was clicked
-buttonContainerEl.addEventListener("click", grabData);
-function grabData(event) {
-	var genreID = event.target.dataset.genreid;
-	getTitleByGenre(genreID);
-}
 
 function getTitleByGenre(genreID) {
 	//gets a movie title given a genreCodeString
@@ -105,7 +62,7 @@ function getTitleByGenre(genreID) {
 			document
 				.querySelector(".poster")
 				.children[0].children[0].setAttribute("src", posterPath);
-			getWatchModeId(title); //calls the next API call function. "title" is the only var from here that it will need.
+			//getWatchModeId(title); //calls the next API call function. "title" is the only var from here that it will need.
 		});
 }
 getTitleByGenre(); //calling the function
@@ -148,6 +105,7 @@ function getStreamSources(watchModeId) {
 		method: "GET",
 		headers: {
 			regions: "US",
+			//"X-RapidAPI-Key": "ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790",
 			"X-RapidAPI-Key": "ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790",
 			"X-RapidAPI-Host": "watchmode.p.rapidapi.com",
 		},
