@@ -35,7 +35,9 @@ function getTitleByGenre(genreID) {
 			posterPath = genreObject.results[randomIndex].poster_path;
 			document.querySelector("#original_title").textContent = originalTitle;
 			document.querySelector("#overview").textContent = overView;
-			document.querySelector("#vote_average").textContent = voteAverage;
+			document.querySelector("#vote_average").textContent = voteAverage
+			
+			+ "/10";
 			document
 				.querySelector(".poster")
 				.children[0].children[0].setAttribute("src", posterPath);

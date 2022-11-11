@@ -127,7 +127,7 @@ button:focus{
     background-color: rgba(126,22,22,.75);
     color: var(--white);
     cursor: pointer;
-    padding-top: 60px;
+    padding-top: 40px;
     width: 275px;
     height: 450px;
     position:absolute;
