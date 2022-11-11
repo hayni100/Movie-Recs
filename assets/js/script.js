@@ -1,24 +1,39 @@
-var posterPath = null;
-////////////////////////////////////////////////////////////////
-//getTitleByGenre gets movie titles given a string of genre codes using the ADVANCED MOVIE SEARCH API.
+var buttonContainerEl = document.querySelector("#all-buttons");
+var posterPath = null; //posterPath gets used during getTitleByGenre but needs to be global, so its up here.
 
-var actionButton = document.getElementById("28"); //28 is the id for "action movie genre"
-function printConsole() {
-	console.log("test");
+
+
+///Proposed expansion of genre buttons////////////////////////////////////////////////// Rhys thinks it would be cool to recommend movies based on multiple preferred genres. the following is a possible expanded version of grabData. instead of just running our program on one genre button, it will allow the user to select multiple genre buttons before submitting them. It could use buttons that toggle colors when pressed and unpressed. maybe it should use local storage to store the genre values.
+//localStorage.clear(); //start with a clean slate is optional in case buttons are not toggles. 
+function createEmptyStorage() {
+localStorage.setItem("genreIds","[]")
 }
-actionButton.addEventListener("click", printConsole);
-//have an event listener on a genre buttons parent and as the user clicks on the genre buttons, the string gets built. the event listener is listening to the specific click, the child, that has its own data that is the genre ID.
-//gets a number of title IDs based on the user's (multiple) genre preferences'
+createEmptyStorage();
 
-function getTitleByGenre() {
+
+buttonContainerEl.addEventListener("click", grabData);
+function grabData(event) 
+{ 
+var localGenreIds= JSON.parse(localStorage.getItem("genreIds"));//this an array made from the string in local storage
+		var genreID = event.target.dataset.genreid;
+		localGenreIds.push(genreID)//this will push genreID onto the end of the array. 
+		console.log("genreID after a click:  "+ genreID);
+			localStorage.setItem("genreIds", JSON.stringify(localGenreIds));//localGenreIds is an array data typ
+}
+
+//build a string from whats in local storage
+
+
+function getTitleByGenre(genreID) {
 	//gets a movie title given a genreCodeString
-	var genreCodeString = "28,"; //this is an example of what will be passed here from user input any number of genre codes written as a string with commas
-	var genreURL =
+	var genreCodeString = genreID; //for now genreCodeStriing just gets genreID, a single genre ID, but can already take a series of genre codes separated by commas. genreCodeString could be reset to assemble a string from local storage
+	var genreURL = //This is the url needed for our first API call for movies by genre.
 		"https://advanced-movie-search.p.rapidapi.com/discover/movie?with_genres=" +
 		genreCodeString +
 		"&page=1";
 
 	const options = {
+		//This is information the API needs for the call
 		method: "GET",
 		headers: {
 			"X-RapidAPI-Key": "ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790",
@@ -33,42 +48,29 @@ function getTitleByGenre() {
 			return response.json();
 		})
 		.then(function (genreObject) {
-			console.log(genreObject);
-			//I have no idea why putting this inside a function is helping
-			var title = genreObject.results[1].title;
-			console.log(
-				title + "has now been parsed in GetTitleByGenre (our first function)"
-			);
-
-			originalTitle = genreObject.results[0].original_title;
+			//the parsed object is full of information like titles, overviews, and movie posters.
+			var randomIndex = Math.floor(Math.random() * genreObject.results.length);
+			//the randomIndex is like a bookmark that lets us pick a movie at random from a long list of movies and repeatedly come back to it to collect different pieces of information pertaining to that particular movie- specifically the title, original title, overview (movie summary), and vote average.
+			var title = genreObject.results[randomIndex].title;
+			originalTitle = genreObject.results[randomIndex].original_title;
+			overView = genreObject.results[randomIndex].overview;
+			voteAverage = genreObject.results[randomIndex].vote_average;
+			posterPath = genreObject.results[randomIndex].poster_path;
 			document.querySelector("#original_title").textContent = originalTitle;
-
-			overView = genreObject.results[0].overview;
 			document.querySelector("#overview").textContent = overView;
-
-			voteAverage = genreObject.results[0].vote_average;
 			document.querySelector("#vote_average").textContent = voteAverage;
-
-			posterPath = genreObject.results[1].poster_path; //made global by deleting var
 			document
 				.querySelector(".poster")
 				.children[0].children[0].setAttribute("src", posterPath);
-
-			getWatchModeId(title); //title gets passed to getWatch
+			//getWatchModeId(title); //calls the next API call function. "title" is the only var from here that it will need.
 		});
 }
 getTitleByGenre(); //calling the function
 
-//the following needs to somehow get the var title from the getTitleByGenre function!
 function getWatchModeId(title) {
-	console.log(
-		"getWatchModeId (our second function) is now receiving this 'title' from GetTitleByGenre (our first function)" +
-			title
-	);
-	var watchIdURL =
+	var watchIdURL = //this is the url that we need for the next API call
 		"https://watchmode.p.rapidapi.com/search/?search_field=name&search_value=" +
 		title;
-
 	const options2 = {
 		method: "GET",
 		headers: {
@@ -76,8 +78,7 @@ function getWatchModeId(title) {
 			"X-RapidAPI-Host": "watchmode.p.rapidapi.com",
 		},
 	};
-
-	fetch(watchIdURL, options2) //returns an object with two keys- title results and people results
+	fetch(watchIdURL, options2)
 		.then(function (response) {
 			if (!response.ok) {
 				throw response.json();
@@ -86,13 +87,7 @@ function getWatchModeId(title) {
 		})
 		.then(function (watchIdObject) {
 			console.log(watchIdObject);
-			var watchModeId = watchIdObject.title_results[0].id; //use this single line to grab just the first title Id
-			// var watchModesArray = [] //if we want more than one title result turn on this array builder code
-			// for (let i = 0; i < 5; i++) {
-			// 	var watchModeId = watchIdObject.title_results[i].id;
-			// 	watchModesArray.push(watchModeId);
-			//}
-			//var IdString = watchModesArray.toString();//if we want more than one title result turn this on also and pass it down as a parameter somehow
+			var watchModeId = watchIdObject.title_results[0].id; //keeping the array index at zero seems to get us the most relevant title, i.e. "shrek" not "shrek 2"
 			getStreamSources(JSON.stringify(watchModeId));
 		});
 }
@@ -110,6 +105,7 @@ function getStreamSources(watchModeId) {
 		method: "GET",
 		headers: {
 			regions: "US",
+			//"X-RapidAPI-Key": "ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790",
 			"X-RapidAPI-Key": "ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790",
 			"X-RapidAPI-Host": "watchmode.p.rapidapi.com",
 		},
@@ -123,27 +119,28 @@ function getStreamSources(watchModeId) {
 		})
 		.then(function (sourcesObject) {
 			console.log(sourcesObject);
-			console.log(sourcesObject[0].type); //testing the parsed object. sholud return "buy" or "rent"
-			var streamSource = sourcesObject[0].name;
-			var streamPrice = sourcesObject[0].price;
-			var BuyOrRent = sourcesObject[0].type;
+			// var streamSource = "Zamazon"; //sourcesObject[0].name;
+			// var streamPrice = "three hundred pennies"; //sourcesObject[0].price;
+			// var ownership = "Rent-to-own"; //sourcesObject[0].type;
+			// // document.querySelector("#streamSource").textContent = streamSource;
+			// // document.querySelector("#streamPrice").textContent = streamSource;
+			//document.querySelector("#ownership").textContent = ownership;
 
-			// var numOfSources = 1;
-			// for (let i = 0; i < numOfSources; i++) {
-			// 	var streamSource = sourcesObject[i].name;
-			// 	var streamPrice = sourcesObject[i].price;
-			// 	var BuyOrRent = sourcesObject[i].type;
-			// 	console.log(
-			// 		"These are the getStreamSources: " +
-			// 			streamSource +
-			// 			"  " +
-			// 			BuyOrRent +
-			// 			"  " +
-			// 			streamPrice
-			// 	);
-			// }
+			for (let i = 0; i < sourcesObject.length; i++) {
+				var streamSource = sourcesObject[i].name;
+				var streamPrice = sourcesObject[i].price;
+				var ownership = sourcesObject[i].type;
+				var streamSentence =
+					ownership +
+					" this movie on " +
+					streamSource +
+					" for " +
+					streamPrice +
+					"------";
+				console.log(streamSentence);
+				document.querySelector("#streamSentence").textContent = streamSentence;
+			}
 		});
-	//probably we should pass the title codes to the next function somehow
 }
 
 //expand for list of genre codes
