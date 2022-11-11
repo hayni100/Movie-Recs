@@ -1,13 +1,11 @@
-var actionButton = document.getElementById("28");
-var cardEl = document.getElementsByClassName("movie-card");
+var sectionEl = document.getElementsByClassName("poster");
+var watchItButton = document.getElementById("watch-movie");
 function printConsole() {
-    console.log("hello");
+	console.log("test");
 }
 
-function show() {
-    cardEl.style.display = "block";
+watchItButton.addEventListener("click", printConsole);
+
+function store() {
+    localStorage.setItem("")
 }
-
-actionButton.addEventListener("click", printConsole, show);
-
-console.log(cardEl);
