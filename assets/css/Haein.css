@@ -8,6 +8,7 @@
     --background_color: black;
     background-color: var(--background_color);
 }
+
 header {
     display: flex;
     flex-direction: column;
@@ -82,9 +83,13 @@ button:active {
 
 /* phone size */
 @media (max-width: 992px) {
-
+    :root{
+        background-color: rgb(24, 1, 1);
 }
 
+    h1 {
+        font-size: 25rem;
+    }
 /* Tablet size */
 @media (max-width: 768px) {
 
