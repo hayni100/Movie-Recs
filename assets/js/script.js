@@ -1,7 +1,6 @@
 var buttonContainerEl = document.querySelector("#all-buttons");
 var posterPath = null; //posterPath gets used during getTitleByGenre but needs to be global, so its up here.
 
-//make a submit button that kicks off the code
 
 //localStorage.clear(); 
 function createEmptyStorage() {
@@ -58,7 +57,9 @@ function getTitleByGenre(genreString) {
 			posterPath = genreObject.results[randomIndex].poster_path;
 			document.querySelector("#original_title").textContent = originalTitle;
 			document.querySelector("#overview").textContent = overView;
-			document.querySelector("#vote_average").textContent = voteAverage;
+			document.querySelector("#vote_average").textContent = voteAverage
+			
+			+ "/10";
 			document
 				.querySelector(".poster")
 				.children[0].children[0].setAttribute("src", posterPath);
