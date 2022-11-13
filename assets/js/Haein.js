@@ -5,6 +5,8 @@ var suggestedMovie = document.querySelector("#your-movie");
 var watchMovieBtn = document.querySelector("#watch-movie");
 var streamingAvail = document.querySelector("#streaming-avail");
 var startOverBtn = document.querySelector("#start-over");
+var savedMovieBtn = document.querySelector("#saved-movie");
+var modal = document.querySelector(".modal");
 
 // click to view next page//
 remote.addEventListener("click", function () {
@@ -29,6 +31,9 @@ function scrollTop() {
         }
     }
 }
+
+//opening and closing modal for saved movie history//
+
 
 
 //toggle movie suggestion page//
