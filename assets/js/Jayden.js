@@ -3,6 +3,12 @@ var buttonContainerEl = document.querySelector("#all-buttons");
 var watchItButton = document.getElementById("watch-movie");
 var capture = document.getElementById("saveCapture");
 var savedInStorage = localStorage.getItem("saved show");
+// Capture individual elements in the poster element, then display those same elements in new saved area
+var showSaved = {
+	
+}
+
+
 
 function printConsole() {
 	console.log("test");
@@ -10,8 +16,6 @@ function printConsole() {
 
 function clickWatchButton() {
 	console.log("storage test");
-	// var save = ""
-	// capture.textContent = save;
 	localStorage.setItem("saved show", JSON.stringify(capture));
 }
 
