@@ -30,7 +30,11 @@ h1 {
     color: var(--bright_red);
     text-align: center;
     position: relative;
+<<<<<<< HEAD
     top: -215px;
+=======
+    top: -200px;
+>>>>>>> 6a3f3d4 (css)
 }
 
 .img-responsive {
@@ -39,8 +43,13 @@ h1 {
     align-items: center;
     justify-content: space-around;
     position: relative;
+<<<<<<< HEAD
     top: -240px;
 
+=======
+    top: -230px;
+    
+>>>>>>> 6a3f3d4 (css)
 }
 
 .click-me {
