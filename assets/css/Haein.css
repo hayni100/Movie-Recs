@@ -9,6 +9,7 @@
     background-color: var(--background_color);
 }
 
+
 header {
     display: flex;
     flex-direction: column;
