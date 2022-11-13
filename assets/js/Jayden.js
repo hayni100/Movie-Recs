@@ -1,50 +1,51 @@
-var buttonContainerEl = document.querySelector("#all-buttons");
-// var sectionEl = document.getElementsByClassName("poster");
 var watchItButton = document.getElementById("watch-movie");
-var capture = document.getElementById("saveCapture");
-var savedInStorage = localStorage.getItem("saved show");
-// Capture individual elements in the poster element, then display those same elements in new saved area
-var showSaved = {
-	
-}
+var saveMovie = document.getElementById("save-movie");
+var theSavedMovie = document.getElementById("the-saved-movie");
 
-
-
+//Console log test
 function printConsole() {
 	console.log("test");
 }
-
+// Fills sidebar with currently selected movie information (Might need to delete later)
 function clickWatchButton() {
-	console.log("storage test");
-	localStorage.setItem("saved show", JSON.stringify(capture));
+
+	var poster = document.getElementById("poster-img").src;
+	var title = document.getElementById("original_title").textContent;
+	var overview = document.getElementById("overview").textContent;
+	var vote = document.getElementById("vote_average").textContent;
+
+//Targets the sidebar and fills with their original information above
+	document.getElementById("poster-img2").src = poster;
+	document.getElementById("original_title2").textContent = title;
+	document.getElementById("overview2").textContent = overview;
+	document.getElementById("vote_average2").textContent = vote;
 }
 
-function savedShowButton() {
-	var lastShow = JSON.parse(localStorage.getItem("saved show"));
-	if (lastShow !== null) {
-		document.querySelector("#savedMovieSpace") = lastShow;
+
+//Stores currently displayed movie into localStorage
+function saveMyMovie() {
+	// Clears local storage first if it contains previous movie
+	if (localStorage !== null) {
+		localStorage.clear();
 	}
+	var captureMovieElements = {
+		posterEl: document.getElementById("poster-img").src,
+		titleEl: document.getElementById("original_title").textContent,
+		overviewEl: document.getElementById("overview").textContent,
+		voteEl: document.getElementById("vote_average").textContent
+	}
+	
+	localStorage.setItem("saved movie", JSON.stringify(captureMovieElements));
+}
+
+function showMyMovie() {
+	var lastMovie = JSON.parse(localStorage.getItem("saved movie"));
+	document.getElementById("poster-img2").src = lastMovie.posterEl;
+	document.getElementById("original_title2").textContent = lastMovie.titleEl;
+	document.getElementById("overview2").textContent = lastMovie.overviewEl;
+	document.getElementById("vote_average2").textContent = lastMovie.voteEl;
 }
 watchItButton.addEventListener("click", clickWatchButton);
+saveMovie.addEventListener("click", saveMyMovie);
+theSavedMovie.addEventListener("click", showMyMovie);
 
-
-///Proposed expansion of genre buttons////////////////////////////////////////////////// Rhys thinks it would be cool to recommend movies based on multiple preferred genres. the following is a possible expanded version of grabData. instead of just running our program on one genre button, it will allow the user to select multiple genre buttons before submitting them. It could use buttons that toggle colors when pressed and unpressed. maybe it should use local storage to store the genre values.
-//localStorage.clear(); //start with a clean slate is optional in case buttons are not toggles. 
-// function createEmptyStorage() {
-// 	localStorage.setItem("genreIds","[]")
-// 	}
-// 	createEmptyStorage();
-	
-	
-// 	buttonContainerEl.addEventListener("click", grabData);
-// 	function grabData(event) 
-// 	{ 
-// 	var localGenreIds= JSON.parse(localStorage.getItem("genreIds"));//this an array made from the string in local storage
-// 			var genreID = event.target.dataset.genreid;
-// 			localGenreIds.push(genreID)//this will push genreID onto the end of the array. 
-// 			console.log("genreID after a click:  "+ genreID);
-// 				localStorage.setItem("genreIds", JSON.stringify(localGenreIds));//localGenreIds is an array data typ
-// 	}
-	
-	//build a string from whats in local storage
-	
