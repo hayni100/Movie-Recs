@@ -5,8 +5,10 @@ var suggestedMovie = document.querySelector("#your-movie");
 var watchMovieBtn = document.querySelector("#watch-movie");
 var streamingAvail = document.querySelector("#streaming-avail");
 var startOverBtn = document.querySelector("#start-over");
-var savedMovieBtn = document.querySelector("#saved-movie");
+var savedMovieBtn = document.querySelector("#open-saved-movie");
 var modal = document.querySelector(".modal");
+var closeModal = document.querySelector("#close-modal");
+
 
 // click to view next page//
 remote.addEventListener("click", function () {
@@ -32,23 +34,51 @@ function scrollTop() {
     }
 }
 
+
+
+modal.style.display = "none";
+
+
 //opening and closing modal for saved movie history//
 
+savedMovieBtn.addEventListener("click", function() { 
+   console.log("modal opened");
+   modal.style.display = "block";
+});
+
+closeModal.addEventListener("click", function() {
+    console.log("close modal");
+    modal.style.display = "none";
+});
 
 
-//toggle movie suggestion page//
-// suggestBtn.addEventListener("click",movieSuggest());
+//////////////////
+// document.addEventListener(
+    
+//       $el.classList.add('is-active');
+//     }
+  
+//     function closeModal($el) {
+//       $el.classList.remove('is-active');
+//     }
+  
+//     function closeAllModals() {
+//       (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+//         closeModal($modal);
+//       });
+//     }
 
-// function movieSuggest() {
-//     var posterSection = document.querySelector(".poster-section");
+// //toggle movie suggestion page//
+// // suggestBtn.addEventListener("click",movieSuggest());
 
-//     posterSection.style.display = "none";
+// // function movieSuggest() {
+// //     var posterSection = document.querySelector(".poster-section");
+
+// //     posterSection.style.display = "none";
 
 
-//     // if (posterSection.style.display === "block") {
-//     //   posterSection.style.display = "none";
-//     // } else {
-//     //   posterSection.style.display = "block";
+// //     // if (posterSection.style.display === "block") {
+// //     //   posterSection.style.display = "none";
+// //     // } else {
+// //     //   posterSection.style.display = "block";
 //     // }
-//   }
-
