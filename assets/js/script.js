@@ -47,6 +47,7 @@ function getTitleByGenre(genreString) {
 			return response.json();
 		})
 		.then(function (genreObject) {
+			console.log(genreObject+"is the genre parsed object")
 			//the parsed object is full of information like titles, overviews, and movie posters.
 			var randomIndex = Math.floor(Math.random() * genreObject.results.length);
 			//the randomIndex is like a bookmark that lets us pick a movie at random from a long list of movies and repeatedly come back to it to collect different pieces of information pertaining to that particular movie- specifically the title, original title, overview (movie summary), and vote average.
@@ -61,91 +62,99 @@ function getTitleByGenre(genreString) {
 			document
 				.querySelector(".poster")
 				.children[0].children[0].setAttribute("src", posterPath);
-			getWatchModeId(title); //calls the next API call function. "title" is the only var from here that it will need.
-		});
-}
-//getTitleByGenre(); //calling the function
-
-function getWatchModeId(title) {
-	var watchIdURL = //this is the url that we need for the next API call
-		"https://watchmode.p.rapidapi.com/search/?search_field=name&search_value=" +
-		title;
-	const options2 = {
-		method: "GET",
-		headers: {
-
-	  	"X-RapidAPI-Key": "7158BxGEKClB0w3h19emEx2CgaspYq6sdZY5mhNX",
-		"X-RapidAPI-Host": "watchmode.p.rapidapi.com",
-		},
-	};console.log(watchIdURL);
-	fetch(watchIdURL, options2)
-		.then(function (response) {
-			if (!response.ok) {
-				throw response.json();
-			}
-			return response.json();
-		})
-		.then(function (watchIdObject) {
-			console.log(watchIdObject);
-			var watchModeId = watchIdObject.title_results[0].id; //keeping the array index at zero seems to get us the most relevant title, i.e. "shrek" not "shrek 2"
-			getStreamSources(JSON.stringify(watchModeId));
-		
+			//whereStreaming(title); //calls the next API call function. "title" is the only var from here that it will need.
+			searchByTitle(title);
 		});
 }
 
-//getStreamSources takes a seven digit Watchmode ID and give where to watch, buy or rent, and price. It also uses the watchmode API.
-function getStreamSources(watchModeId) {
-	console.log(
-		"this is getStreamSources (our third and last call function) receiving a single watchModeId from getWatchModeId:   " +
-			watchModeId
-	);
-	var getStreamURL =
-		"https://watchmode.p.rapidapi.com/title/" + watchModeId + "/sources/";
 
+function searchByTitle(title) {
+	var whereStreamingURL = //this is the url that we need for the next API call
+	'https://mdblist.p.rapidapi.com/?s='+title+"'"
 	const options = {
 		method: "GET",
-		headers: {
-			regions: "US",
-		"X-RapidAPI-Key": "7158BxGEKClB0w3h19emEx2CgaspYq6sdZY5mhNX",//a new key from haein', 46 characters long
-		"X-RapidAPI-Host": "watchmode.p.rapidapi.com",
-	
+		headers: {			
 
-			//"X-RapidAPI-Key": "FevleXdIzsv7SUpr6vtL29ukYk8KgR2gWFlDGEB2",//jaydens 40 characters long
-			//"X-RapidAPI-Host": "watchmode.p.rapidapi.com",
+			'X-RapidAPI-Key': 'ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790',//Rhys' X-RapidAPI- Key
+			'X-RapidAPI-Host': 'mdblist.p.rapidapi.com'
 		},
 	};
-	fetch(getStreamURL, options)
+	fetch(whereStreamingURL, options)
 		.then(function (response) {
-			if (!response.ok) {
+			if (!response.ok) { 
 				throw response.json();
 			}
 			return response.json();
 		})
-		.then(function (sourcesObject) {
-			console.log(sourcesObject);
-			 //var streamSource = "Zamazon"; //sourcesObject[0].name;
-			//var streamPrice = "three hundred pennies"; //sourcesObject[0].price;
-			//var ownership = "Rent-to-own"; //sourcesObject[0].type;
-			 document.querySelector("#streamSource").textContent = streamSource;
-			 document.querySelector("#streamPrice").textContent = streamSource;
-			document.querySelector("#ownership").textContent = ownership;
+		.then(function (imdbObject) {
+		console.log(imdbObject +" is the imdbIdObject");
 
-			for (let i = 0; i < sourcesObject.length; i++) {
-				var streamSource = sourcesObject[i].name;
-				var streamPrice = sourcesObject[i].price;
-				var ownership = sourcesObject[i].type;
-				var streamSentence =
-					ownership +
-					" this movie on " +
-					streamSource +
-					" for " +
-					streamPrice +
-					"------";
-				console.log(streamSentence);
-				document.querySelector("#streamSentence").textContent = streamSentence;
-			}
+			 streams = imdbObject.streams[0].name;
+			console.log(streams +" is the first streaming source");
 		});
 }
+
+
+
+			//  document.querySelector("#streamSource").textContent = streamSource;
+			//  document.querySelector("#streamPrice").textContent = streamSource;
+			// document.querySelector("#ownership").textContent = ownership;
+
+			// for (let i = 0; i < sourcesObject.length; i++) {
+			// 	var streamSource = sourcesObject[i].name;
+			// 	var streamPrice = sourcesObject[i].price;
+			// 	var ownership = sourcesObject[i].type;
+			// 	var streamSentence =
+			// 		ownership +
+			// 		" this movie on " +
+			// 		streamSource +
+			// 		" for " +
+			// 		streamPrice +
+			// 		"------";
+			// 	console.log(streamSentence);
+			// 	document.querySelector("#streamSentence").textContent = streamSentence;
+			// }
+
+
+
+
+
+
+
+
+// function getStreamsByImdbId(ImdbID){
+// 	var getStreamsURL = 
+// 	"https://mdblist.p.rapidapi.com/?i=" + ImdbID
+// 	console.log(getStreamsURL+"is the ImbdIdURL");
+// 	const options = {
+// 		method: 'GET',
+// 		headers: {
+// 			'X-RapidAPI-Key': 'ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790',
+// 			'X-RapidAPI-Host': 'mdblist.p.rapidapi.com'
+// 		}
+// 	};
+// 	fetch(getByImdbIdURL, options)
+// 	.then(function (response) {
+// 		if (!response.ok) { 
+// 			throw response.json();
+// 		}
+// 		return response.json();
+// 	})
+// 	.then(function (streamingObject) {
+// 		console.log(streamingObject +" is the streamingObject");
+
+// 		streams = streamingObject.streams[0].name
+// 		console.log(streams +" is streaming name");
+// 		});
+// }
+
+
+
+
+
+
+
+	
 
 //expand for list of genre codes
 // {
