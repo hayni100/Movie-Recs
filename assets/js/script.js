@@ -1,7 +1,7 @@
 console.log("THIS IS THE START OF THE SCRIPT RHYS IS WORKING ON");
 var buttonContainerEl = document.querySelector("#all-buttons");
 var posterPath = null; //posterPath gets used during getTitleByGenre but needs to be global, so its up here.
-localStorage.clear(); //clears all local storage on page load. 
+//localStorage.clear(); //clears all local storage on page load. 
 function createEmptyStorage() {//creates a key and value in local storage to start creating a list of genreIds
 localStorage.setItem("genreIds","[]")//creates the key and empty value on page load
 }

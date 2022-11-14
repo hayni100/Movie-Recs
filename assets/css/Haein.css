@@ -101,6 +101,10 @@ main {
     display: none;
 }
 
+#hideForNow {
+    display: none;
+}
+
 /* experiment with toggle */
 /* .movie-contents:before {
     visibility: hidden;
