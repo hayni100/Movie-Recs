@@ -23,8 +23,6 @@ getTitleByGenre(genreString);//passes our first API call function the string of 
 }
 
 function getTitleByGenre(genreString) {
-	//gets a movie title given a genreCodeString
-	//var genreCodeString = genreID; //for now genreCodeStriing just gets genreID, a single genre ID, but can already take a series of genre codes separated by commas. genreCodeString could be reset to assemble a string from local storage
 	var genreURL = //This is the url needed for our first API call for movies by genre.
 		"https://advanced-movie-search.p.rapidapi.com/discover/movie?with_genres=" +
 		genreString +
@@ -46,108 +44,150 @@ function getTitleByGenre(genreString) {
 			return response.json();
 		})
 		.then(function (genreObject) {
-			console.log(genreObject+"is the genre parsed object")
+			//console.log(genreObject+"is the genre parsed object")
 			//the parsed object is full of information like titles, overviews, and movie posters.
 			var randomIndex = Math.floor(Math.random() * genreObject.results.length);
 			//the randomIndex is like a bookmark that lets us pick a movie at random from a long list of movies and repeatedly come back to it to collect different pieces of information pertaining to that particular movie- specifically the title, original title, overview (movie summary), and vote average.
 			var title = genreObject.results[randomIndex].title;
+			var movie_id = genreObject.results[randomIndex].id;
+			console.log("the movie ID: "+movie_id);
 			originalTitle = genreObject.results[randomIndex].original_title;
 			overView = genreObject.results[randomIndex].overview;
 			voteAverage = genreObject.results[randomIndex].vote_average;
 			posterPath = genreObject.results[randomIndex].poster_path;
 			document.querySelector("#original_title").textContent = originalTitle;
 			document.querySelector("#overview").textContent = overView;
-			document.querySelector("#vote_average").textContent = voteAverage
-			
-			+ "/10";
+			document.querySelector("#vote_average").textContent = voteAverage;
 			document
 				.querySelector(".poster")
 				.children[0].children[0].setAttribute("src", posterPath);
-			//whereStreaming(title); //calls the next API call function. "title" is the only var from here that it will need.
-			searchByTitle(title);
+			
+			getDetailedResponse(movie_id);
 		});
 }
+//getDetailedResponse will take the regular movie id and give a IMDB movie ID that we need for getStreamsbyIMDBId
+function getDetailedResponse(movie_id){
+var detailedURL = "https://advanced-movie-search.p.rapidapi.com/movies/getdetails?movie_id="+movie_id
+const options3 = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': 'ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790',
+		'X-RapidAPI-Host': 'advanced-movie-search.p.rapidapi.com'
+	}
+};
+fetch(detailedURL, options3)
+.then(function (response) {
+	if (!response.ok) {
+		throw response.json();
+	}
+	return response.json();
+})
+.then(function(detailedObject){
+//find the data we need in the object
+console.log(detailedObject);
+var IMDBID= detailedObject.imdb_id
+
+console.log("The IMDBID IS :"+IMDBID);
+
+getStreamsByIMDBID(IMDBID); //call the final function that gets streaming data given an IMDBID.
+})
 
 
-function searchByTitle(title) {
-	var whereStreamingURL = //this is the url that we need for the next API call
-	'https://mdblist.p.rapidapi.com/?s='+title+"'"
+}
+
+function getStreamsByIMDBID(IMDBID){
+	var getByIMDBidURL = 
+	"https://mdblist.p.rapidapi.com/?i=" + IMDBID
+	console.log(getByIMDBidURL+"is the ImbdIdURL");
 	const options = {
-		method: "GET",
-		headers: {			
-
-			'X-RapidAPI-Key': 'ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790',//Rhys' X-RapidAPI- Key
+		method: 'GET',
+		headers: {
+			'X-RapidAPI-Key': 'ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790',
 			'X-RapidAPI-Host': 'mdblist.p.rapidapi.com'
-		},
+		}
 	};
-	fetch(whereStreamingURL, options)
-		.then(function (response) {
-			if (!response.ok) { 
-				throw response.json();
+	fetch(getByIMDBidURL, options)
+	.then(function (response) {
+		if (!response.ok) { 
+			throw response.json();
+		}
+		return response.json();
+	})
+	.then(function (imdbObject) {
+		console.log(imdbObject);
+		var firstStreamSource = imdbObject.streams[0].name //this will be undefined if the movie is still in theaters or whatever
+		console.log(firstStreamSource +" is the first streaming source"); //console logs the fist stream source, if one exists
+		var streams = imdbObject.streams
+		for (let i=0; i < streams.length; i++){//should repeatedly add stream sources to #streamSources (please make this in the HTML) . Hopefully it will append each stream source to the text, not everwrite whats there. If I recall correctly this will work correctly.
+			
+			var streamSources = imdbObject.streams[i].name
+			console.log("your movie is available on "+streamSources);
+			document.querySelector("#streamSources").textContent = streamSources;
 			}
-			return response.json();
-		})
-		.then(function (imdbObject) {
-		console.log(imdbObject +" is the imdbIdObject");
-
-			 streams = imdbObject.streams[0].name;
-			console.log(streams +" is the first streaming source");
-		});
+			var trailerPath = imdbObject.trailer
+			document.querySelector("#trailerPath").textContent = trailerPath;
+		
+	});
 }
 
 
-
+//example code for that will be useful to rhys
 			//  document.querySelector("#streamSource").textContent = streamSource;
 			//  document.querySelector("#streamPrice").textContent = streamSource;
 			// document.querySelector("#ownership").textContent = ownership;
 
 			// for (let i = 0; i < sourcesObject.length; i++) {
 			// 	var streamSource = sourcesObject[i].name;
-			// 	var streamPrice = sourcesObject[i].price;
-			// 	var ownership = sourcesObject[i].type;
+
 			// 	var streamSentence =
 			// 		ownership +
 			// 		" this movie on " +
 			// 		streamSource +
-			// 		" for " +
-			// 		streamPrice +
 			// 		"------";
 			// 	console.log(streamSentence);
 			// 	document.querySelector("#streamSentence").textContent = streamSentence;
 			// }
-
-
-
-
-
-
-
-
-// function getStreamsByImdbId(ImdbID){
-// 	var getStreamsURL = 
-// 	"https://mdblist.p.rapidapi.com/?i=" + ImdbID
-// 	console.log(getStreamsURL+"is the ImbdIdURL");
+// function searchByTitle(title) {// BAD DATA! search by title seems to not be giving correcct data, so i'm going to abandon this one. 
+// 	var whereStreamingURL = //this is the url that we need for the next API call
+// 	'https://mdblist.p.rapidapi.com/?s='+title+"'"
 // 	const options = {
-// 		method: 'GET',
-// 		headers: {
-// 			'X-RapidAPI-Key': 'ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790',
-// 			'X-RapidAPI-Host': 'mdblist.p.rapidapi.com'
-// 		}
-// 	};
-// 	fetch(getByImdbIdURL, options)
-// 	.then(function (response) {
-// 		if (!response.ok) { 
-// 			throw response.json();
-// 		}
-// 		return response.json();
-// 	})
-// 	.then(function (streamingObject) {
-// 		console.log(streamingObject +" is the streamingObject");
+// 		method: "GET",
+// 		headers: {			
 
-// 		streams = streamingObject.streams[0].name
-// 		console.log(streams +" is streaming name");
+// 			'X-RapidAPI-Key': 'ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790',//Rhys' X-RapidAPI- Key
+// 			'X-RapidAPI-Host': 'mdblist.p.rapidapi.com'
+// 		},
+// 	};
+// 	fetch(whereStreamingURL, options)
+// 		.then(function (response) {
+// 			//console.log(response);// could it be that the response is being sent differently?
+// 			if (!response.ok) { 
+// 				throw response.json();
+// 			}
+// 			//return response.body;
+// 			return response.json();
+// 		})
+// 		.then(function (ImdbObject) {
+// 			const parseImdbObject = JSON.parse(imdbObject)
+// 			var streams = parseImdbObject.streams[0].name
+// 		console.log(ImdbObject+"is the Object");
+// 		console.log(streams+" is the streams at [0]");
+
+// 			console.log(streams +" is the first streaming source");
 // 		});
 // }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
