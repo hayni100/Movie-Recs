@@ -5,7 +5,7 @@ var remoteImg = document.getElementById("remote");
 var movieBox = document.getElementById("streaming-avail");
 var wholeMovieSection = document.getElementById("poster-section");
 var suggestMovieBtn = document.getElementById("suggest-movie-btn");
-var resetBtn = document.getElementById("reset-btn");
+var startOverBtn = document.getElementById("Start-over");
 //Console log test
 function printConsole() {
 	console.log("test");
@@ -16,14 +16,19 @@ remoteImg.addEventListener("click", function revealMain() {
 	mainBody.style.display = "block";
 	wholeMovieSection.style.display = "none";
 	movieBox.style.display = "none";
+	pickGenre.scrollIntoView(true);
 })
 
 suggestMovieBtn.addEventListener("click", function revealMovies() {
 	wholeMovieSection.style.display = "block";
+	movieBox.style.display = "block";
+	movieBox.style.display = "flex";
+	streamingAvail.scrollIntoView(true);
 })
 
-resetBtn.addEventListener("click", function hideMovies() {
+startOverBtn.addEventListener("click", function hideMovies() {
 	wholeMovieSection.style.display = "none";
+	movieBox.style.display = "none";
 	sessionStorage.removeItem("genreIds");
 	localStorage.setItem("genreIds", "[]");
 })
@@ -71,7 +76,7 @@ function showMyMovie() {
 	document.getElementById("overview2").textContent = lastMovie.overviewEl;
 	document.getElementById("vote_average2").textContent = lastMovie.voteEl;
 }
-watchItButton.addEventListener("click", clickWatchButton);
+suggestMovieBtn.addEventListener("click", clickWatchButton);
 saveMovie.addEventListener("click", saveMyMovie);
 theSavedMovie.addEventListener("click", showMyMovie);
 
