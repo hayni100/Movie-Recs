@@ -12,4 +12,4 @@ movieTicket.addEventListener("click", function() {
     suggestedMovie.scrollIntoView(true);
     });
 
-    
+// multiple selected buttons
