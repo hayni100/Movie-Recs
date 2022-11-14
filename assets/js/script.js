@@ -124,8 +124,8 @@ function getStreamsByIMDBID(IMDBID)
 			// }
 			
 			// }
-		 var trailerPath = imdbObject.trailer
-		 console.log(trailerPath);
-			document.querySelector("#vote_average2").textContent = trailerPath;
+		var trailerPath = imdbObject.trailer
+		console.log(trailerPath);
+			document.querySelector("#streaming-content").textContent = trailerPath;
 	});
 }
