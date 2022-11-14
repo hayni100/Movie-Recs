@@ -97,6 +97,10 @@ button:active {
     border-color: var(--light_yellow);
 }
 
+main {
+    display: none;
+}
+
 /* experiment with toggle */
 /* .movie-contents:before {
     visibility: hidden;

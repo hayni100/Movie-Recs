@@ -1,11 +1,32 @@
 var watchItButton = document.getElementById("watch-movie");
 var saveMovie = document.getElementById("save-movie");
 var theSavedMovie = document.getElementById("the-saved-movie");
-
+var remoteImg = document.getElementById("remote");
+var movieBox = document.getElementById("streaming-avail");
+var wholeMovieSection = document.getElementById("poster-section");
+var suggestMovieBtn = document.getElementById("suggest-movie-btn");
+var resetBtn = document.getElementById("reset-btn");
 //Console log test
 function printConsole() {
 	console.log("test");
 }
+//Reveals buttons and movie information on remote click (button needs to be clicked twice to move UI down, find a fix??)
+remoteImg.addEventListener("click", function revealMain() {
+	var mainBody = document.querySelector("main");
+	mainBody.style.display = "block";
+	wholeMovieSection.style.display = "none";
+	movieBox.style.display = "none";
+})
+
+suggestMovieBtn.addEventListener("click", function revealMovies() {
+	wholeMovieSection.style.display = "block";
+})
+
+resetBtn.addEventListener("click", function hideMovies() {
+	wholeMovieSection.style.display = "none"
+})
+
+
 // Fills sidebar with currently selected movie information (Might need to delete later)
 function clickWatchButton() {
 
@@ -13,6 +34,9 @@ function clickWatchButton() {
 	var title = document.getElementById("original_title").textContent;
 	var overview = document.getElementById("overview").textContent;
 	var vote = document.getElementById("vote_average").textContent;
+//Reveals the movie box
+	movieBox.style.display = "block";
+	movieBox.style.display =  "flex";
 
 //Targets the sidebar and fills with their original information above
 	document.getElementById("poster-img2").src = poster;
