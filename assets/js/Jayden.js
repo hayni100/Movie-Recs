@@ -23,7 +23,9 @@ suggestMovieBtn.addEventListener("click", function revealMovies() {
 })
 
 resetBtn.addEventListener("click", function hideMovies() {
-	wholeMovieSection.style.display = "none"
+	wholeMovieSection.style.display = "none";
+	sessionStorage.removeItem("genreIds");
+	localStorage.setItem("genreIds", "[]");
 })
 
 
