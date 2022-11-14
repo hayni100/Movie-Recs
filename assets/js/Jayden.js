@@ -13,6 +13,10 @@ function clickWatchButton() {
 	var title = document.getElementById("original_title").textContent;
 	var overview = document.getElementById("overview").textContent;
 	var vote = document.getElementById("vote_average").textContent;
+	var movieBox = document.getElementById("streaming-avail");
+
+	movieBox.style.display = "block";
+	movieBox.style.display =  "flex";
 
 //Targets the sidebar and fills with their original information above
 	document.getElementById("poster-img2").src = poster;
