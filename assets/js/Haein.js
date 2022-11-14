@@ -1,15 +1,49 @@
 var remote = document.querySelector("#remote");
 var pickGenre = document.querySelector(".pick-genre");
-var movieTicket = document.querySelector("#suggest-movie-btn")
+var suggestBtn = document.querySelector("#suggest-movie-btn")
 var suggestedMovie = document.querySelector("#your-movie");
+var watchMovieBtn = document.querySelector("#watch-movie");
+var streamingAvail = document.querySelector("#streaming-avail");
+var startOverBtn = document.querySelector("#start-over");
 
-// clickable buttons
-remote.addEventListener("click", function() {
-pickGenre.scrollIntoView(true);
+// click to view next page//
+remote.addEventListener("click", function () {
+    pickGenre.scrollIntoView(true);
 });
 
-movieTicket.addEventListener("click", function() {
+suggestBtn.addEventListener("click", function () {
     suggestedMovie.scrollIntoView(true);
-    });
+});
 
-    
+watchMovieBtn.addEventListener("click", function () {
+    streamingAvail.scrollIntoView(true);
+});
+
+//reshreshing page was not scrolling to top//
+function scrollTop() {
+    if (history.scrollRestoration) {
+        history.scrollRestoration = 'manual';
+    } else {
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        }
+    }
+}
+
+
+//toggle movie suggestion page//
+// suggestBtn.addEventListener("click",movieSuggest());
+
+// function movieSuggest() {
+//     var posterSection = document.querySelector(".poster-section");
+
+//     posterSection.style.display = "none";
+
+
+//     // if (posterSection.style.display === "block") {
+//     //   posterSection.style.display = "none";
+//     // } else {
+//     //   posterSection.style.display = "block";
+//     // }
+//   }
+
