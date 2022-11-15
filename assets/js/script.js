@@ -111,23 +111,21 @@ function getStreamsByIMDBID(IMDBID)
 	})
 	.then(function (imdbObject) {
 		//if the imdbObject is not an object for some weird (but weirdly frequent) reason, maybe start over with getTitleByGenre
-			console.log(imdbObject+" is the IMBDObject");
-			//console.log(imdbObject.streams[0]+"is the first stream source");
-			//if streams.length is not defined, start over
-			// if (typeof(imdbObject.streams[0].name) === null) {//if there is no first stream source (movie isn't streaming yet)
-			// 	getTitleByGenre(genreString);//does getTitleByGenre have access to genreString here?? or do we need to pass it to getStream
-			// }else {
-			// for (let i=0; i < streams.length; i++){//should repeatedly add stream sources to #streamSources (please make this in the HTML) . Hopefully it will append each stream source to the text, not everwrite whats there. If I recall correctly this will work correctly.
-			// var streamSources = imdbObject.streams[i].name
-			// console.log("your movie is available on "+streamSources);
-			// document.querySelector("#streamSentence").textContent = streamSources;
-			// }
-			
-			// }
+		
 		var trailerPath = document.querySelector("#streaming-content").textContent = "Click to Watch Trailer";
 			// console.log(trailerPath);
 			// document.querySelector("#streaming-content").textContent = trailerPath;
 			// document.querySelector("#streaming-content").textContent = "Click to Watch Trailer";
-			trailerPath.href = getByIMDBidURL;
+			streamingContent = document.querySelector("#streaming-content")
+			streamingContent.addEventListener('click', function(event){
+				event.preventDefault();
+				window.open(streamingContent.href = imdbObject.trailer);
+			})
+			
+			
+			// streamingContent.href = imdbObject.trailer;
 	});
+
+	
+
 }
