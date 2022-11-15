@@ -208,6 +208,11 @@ h3 {
       background-color: var(--butter);
     }
   }
+
+  h1 {
+    font-size: 200px;
+    padding-bottom: 10px;
+  }
   .click-me {
     color: black;
   }
@@ -224,8 +229,4 @@ h3 {
     padding-right: 50px;
   }
 
-  .modal {
-    display: flex;
-    justify-content: center;
-  }
 }
