@@ -1,6 +1,6 @@
 var watchItButton = document.getElementById("watch-movie");
 var saveMovie = document.getElementById("save-movie");
-var theSavedMovie = document.getElementById("the-saved-movie");
+var theSavedMovie = document.getElementById("saved-movie");
 var remoteImg = document.getElementById("remote");
 var movieBox = document.getElementById("streaming-avail");
 var wholeMovieSection = document.getElementById("poster-section");
@@ -60,10 +60,10 @@ function saveMyMovie() {
 		localStorage.clear();
 	}
 	var captureMovieElements = {
-		posterEl: document.getElementById("poster-img").src,
-		titleEl: document.getElementById("original_title").textContent,
-		overviewEl: document.getElementById("overview").textContent,
-		voteEl: document.getElementById("vote_average").textContent
+		posterEl: document.getElementById("poster-img2").src,
+		titleEl: document.getElementById("original_title2").textContent,
+		overviewEl: document.getElementById("overview2").textContent,
+		voteEl: document.getElementById("vote_average2").textContent
 	}
 	
 	localStorage.setItem("saved movie", JSON.stringify(captureMovieElements));
@@ -71,12 +71,14 @@ function saveMyMovie() {
 
 function showMyMovie() {
 	var lastMovie = JSON.parse(localStorage.getItem("saved movie"));
-	document.getElementById("poster-img2").src = lastMovie.posterEl;
-	document.getElementById("original_title2").textContent = lastMovie.titleEl;
-	document.getElementById("overview2").textContent = lastMovie.overviewEl;
-	document.getElementById("vote_average2").textContent = lastMovie.voteEl;
+	console.log(lastMovie);
+	document.getElementById("modal-poster").src = lastMovie.posterEl;
+	document.getElementById("modal-movie-name").textContent = lastMovie.titleEl;
+	document.getElementById("modal-movie-plot").textContent = lastMovie.overviewEl;
+	document.getElementById("modal-movie-rating").textContent = lastMovie.voteEl;
 }
 suggestMovieBtn.addEventListener("click", clickWatchButton);
 saveMovie.addEventListener("click", saveMyMovie);
 theSavedMovie.addEventListener("click", showMyMovie);
+// theSavedMovie.addEventListener("click", showMyMovie);
 
