@@ -30,7 +30,26 @@
       <img id="remote" src="./remotew.png" style="width: 220px; height: 220px" />
     </div>
     <h2 id="what-where-to-watch">What to Watch Where to Watch</h2>
+    <div class="movie-save-btns save-movies">
+        <button id="saved-movie">Saved movie</button>
+    </div>
 
+
+    <!--sidebar using Bulma for saved movie-->
+    <div class="modal">
+        <div class="modal-background">
+        <div class="modal-content">
+          <img id="modal-poster" src="" style="width: 175px; height: 250px" /> 
+          <p id="modal-movie-name">Movie Name</p>
+          <p id="modal-movie-plot">This is where the plot goes Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros.
+            Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient
+            montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum.</p>
+          <p id="modal-movie-rating">10/10</p>
+       
+        <button id="close-modal">Close</button>
+        </div>
+        </div>
+      </div>
   </header>
 
   <main>
@@ -118,7 +137,7 @@
         
         <div class="movie-save-btns">
             <button id="save-movie">Save My Movie</button>
-            <button id="saved-movie">Saved movie</button>
+            <!-- <button id="saved-movie">Saved movie</button> -->
         </div>
         <div class="start-over-btn">
             <button id="Start-over">Start Over</button>
@@ -126,21 +145,7 @@
     </section>
 
 
-      <!--sidebar using Bulma for saved movie-->
-      <div class="modal">
-        <div class="modal-background">
-        <div class="modal-content">
-          <img id="modal-poster" src="" style="width: 175px; height: 250px" /> 
-          <p id="modal-movie-name">Movie Name</p>
-          <p id="modal-movie-plot">This is where the plot goes Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros.
-            Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient
-            montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum.</p>
-          <p id="modal-movie-rating">10/10</p>
-       
-        <button id="close-modal">Close</button>
-</div>
- </div>
-      </div>
+      
 
   </main>
 </body>

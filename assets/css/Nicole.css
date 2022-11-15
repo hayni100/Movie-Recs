@@ -8,6 +8,17 @@
     --background_color: black;
 }
 
+/* heading saved movie button */
+#saved-movie {
+    display: flex;
+    justify-content: center;
+}
+
+.save-movies {
+    position: relative;
+    top: -215px;
+}
+
 /* Buttons/Pick Genre Section */
 #all-buttons {
     display: flex;
