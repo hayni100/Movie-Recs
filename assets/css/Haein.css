@@ -94,7 +94,9 @@ button:active {
     padding: 60px;
     margin: 60px;
     border-style: dotted;
-    border-color: var(--light_yellow);
+    border-color: var(--butter);
+    border-width: thick;
+    background-color: var(--dark_red);
 }
 
 main {
@@ -105,6 +107,12 @@ main {
     display: none;
 }
 
+.modal-content {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 /* experiment with toggle */
 /* .movie-contents:before {
     visibility: hidden;
