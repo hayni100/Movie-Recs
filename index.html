@@ -31,25 +31,27 @@
     </div>
     <h2 id="what-where-to-watch">What to Watch</h2>
     <div class="movie-save-btns save-movies">
-        <button id="saved-movie">Saved movie</button>
+      <button id="saved-movie">Saved movie</button>
     </div>
 
 
     <!--sidebar using Bulma for saved movie-->
     <div class="modal">
-        <div class="modal-background">
+      <div class="modal-background">
         <div class="modal-content">
-          <img id="modal-poster" src="" style="width: 175px; height: 250px" /> 
+          <img id="modal-poster" src="" style="width: 175px; height: 250px" />
           <p id="modal-movie-name">Movie Name</p>
-          <p id="modal-movie-plot">This is where the plot goes Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros.
+          <p id="modal-movie-plot">This is where the plot goes Lorem ipsum leo risus, porta ac consectetur ac,
+            vestibulum at eros.
             Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient
             montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum.</p>
-          <p id="modal-movie-rating">10/10</p>
-       
-        <button id="close-modal">Close</button>
-        </div>
+          <p id="modal-movie-rating"></p>
+
+
+          <button id="close-modal">Close</button>
         </div>
       </div>
+    </div>
   </header>
 
   <main>
@@ -83,73 +85,72 @@
       </div>
     </section>
 
-    <!--recommended movie-->
+    <!-- recommended movie -->
     <section class="poster-section" id="poster-section">
       <section id="hideForNow">
-      <h2 id="your-movie">Your Movie:</h2>
-      <section class="poster" id="saveCapture">
-        <div id="poster-path"> 
-            <img id="poster-img"
-            src=""
-            style="width: 275px; height: 450px"
-            />
-        </div>
-        <div class="movie-contents">
-          <h3 id="original_title"></h3>
-          <p id="overview"></p>
-          <p id="vote_average"></p>
+        <h2 id="your-movie">Your Movie:</h2>
+        <section class="poster" id="saveCapture">
+          <div id="poster-path">
+            <img id="poster-img" src="" style="width: 275px; height: 450px" />
+          </div>
+          <div class="movie-contents">
+            <h3 id="original_title"></h3>
+            <p id="overview"></p>
+            <p id="vote_average"></p>
 
+          </div>
+        </section>
+
+
+
+
+        <!--Buttons for navigation-->
+        <div class="poster-btns">
+          <button id="new-movie">Pick Another Movie</button>
+          <button id="watch-movie">Let's Watch It!</button>
         </div>
+        <a href="#genre-text" id="reset-btn">Reset Genre</a>
       </section>
 
+      <!-- Page with streaming availability pops up when "let's watch it button is clicked"-->
 
-
-
-      <!--Buttons for navigation-->
-    <div class="poster-btns">
-      <button id="new-movie">Pick Another Movie</button>
-      <button id="watch-movie">Let's Watch It!</button>
-    </div>
-    <a href="#genre-text" id="reset-btn">Reset Genre</a>
-    </section>
-
-    <!-- Page with streaming availability pops up when "let's watch it button is clicked"-->
-
-    <section class="columns" id="streaming-avail">
-      <div class="column is-4">
-        <img id="poster-img2" src="" style="width: 275px; height: 450px" />
-      </div>
-      <div class="movie-information">
-        <div class="column is-4" id="movie-about">
-         <h3 id="original_title2">Movie Title</h3>
-         <p id="overview2">This is where the plot goes Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros.
-          Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient
-          montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum.</p>
-         <p id="vote_average2">7.7/10</p>
+      <section class="columns" id="streaming-avail">
+        <div class="column is-4">
+          <img id="poster-img2" src="" style="width: 275px; height: 450px" />
         </div>
+        <div class="movie-information">
+          <div class="column is-4" id="movie-about">
+            <h3 id="original_title2">Movie Title</h3>
+            <p id="overview2">This is where the plot goes Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at
+              eros.
+              Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient
+              montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum.</p>
+            <p id="vote_average2">7.7/10</p>
+          </div>
 
-        <div class="column" >
+          <div class="column">
             <a id="streaming-content" href=""></a>
+          </div>
         </div>
-    </div>
-    </section>
-    </div>
-        
-        <div class="movie-save-btns">
-            <button id="save-movie">Save My Movie</button>
-            <!-- <button id="saved-movie">Saved movie</button> -->
-        </div>
-        <div class="start-over-btn">
-            <button id="Start-over">Start Over</button>
-        </div>
+      </section>
+      </div>
+
+      <div class="movie-save-btns">
+        <button id="save-movie">Save My Movie</button>
+        <!-- <button id="saved-movie">Saved movie</button> -->
+      </div>
+      <div class="start-over-btn">
+        <button id="Start-over">Start Over</button>
+      </div>
     </section>
 
 
-      
+
 
   </main>
 </body>
 <script src="./assets/js/Haein.js"></script>
 <script src="./assets/js/script.js"></script>
 <script src="./assets/js/Jayden.js"></script>
+
 </html>

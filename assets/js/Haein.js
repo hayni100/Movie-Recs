@@ -8,7 +8,7 @@ var startOverBtn = document.querySelector("#start-over");
 var savedMovieBtn = document.querySelector("#saved-movie");
 var modal = document.querySelector(".modal");
 var closeModal = document.querySelector("#close-modal");
-
+var buttons = document.querySelector("button")
 
 // click to view next page//
 remote.addEventListener("click", function () {
