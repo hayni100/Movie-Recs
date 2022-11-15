@@ -5,6 +5,10 @@ var suggestedMovie = document.querySelector("#your-movie");
 var watchMovieBtn = document.querySelector("#watch-movie");
 var streamingAvail = document.querySelector("#streaming-avail");
 var startOverBtn = document.querySelector("#start-over");
+var savedMovieBtn = document.querySelector("#saved-movie");
+var modal = document.querySelector(".modal");
+var closeModal = document.querySelector("#close-modal");
+
 
 // click to view next page//
 remote.addEventListener("click", function () {
@@ -30,20 +34,16 @@ function scrollTop() {
     }
 }
 
+savedMovieBtn.addEventListener("click", function () {
+    console.log("open modal");
+    modal.classList.add("is-active");
+    modal.classList.add("is-clipped");
+});
 
-//toggle movie suggestion page//
-// suggestBtn.addEventListener("click",movieSuggest());
+closeModal.addEventListener("click", function () {
+    console.log("close modal");
+    modal.classList.remove("is-active");
+    modal.classList.remove("is-clipped");
+});
 
-// function movieSuggest() {
-//     var posterSection = document.querySelector(".poster-section");
-
-//     posterSection.style.display = "none";
-
-
-//     // if (posterSection.style.display === "block") {
-//     //   posterSection.style.display = "none";
-//     // } else {
-//     //   posterSection.style.display = "block";
-//     // }
-//   }
-
+ 
