@@ -19,3 +19,4 @@ Rhys Smoker - Created the code that fetched API information and made it availabl
 Nicole Cohen - Collaborated with Haein to create a beautiful interface and smooth user experience.
 Haein Kim - Created Github repository, deployed page, and collaborated with Nicole to ensure the user experience was smooth.
 Jayden Chapman - Created local storage for saved movie and managed git merge conflicts.
+
