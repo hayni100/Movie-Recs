@@ -82,7 +82,7 @@ button {
     font-size: 1.2rem;
     font-family:'Fuzzy Bubbles', cursive;
     color: var(--white);
-    width: 15%; 
+    /* width: 15%;  */
     padding: 15px;
     border-radius: 3rem;
     border-width: 0px;
