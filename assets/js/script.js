@@ -125,7 +125,7 @@ function getStreamsByIMDBID(IMDBID)
 			
 			// }
 		var trailerPath = document.querySelector("#streaming-content").textContent = "Click to Watch Trailer";
-		console.log(trailerPath);
+			// console.log(trailerPath);
 			// document.querySelector("#streaming-content").textContent = trailerPath;
 			// document.querySelector("#streaming-content").textContent = "Click to Watch Trailer";
 			trailerPath.href = getByIMDBidURL;

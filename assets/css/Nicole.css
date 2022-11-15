@@ -25,14 +25,19 @@ h2 {
 
 .center {
     position: relative;
-    display:inline;
-    display: flex;
-    justify-content: center;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
     padding-top: 20px;
 }
 
 .pick-genre {
-    padding-top: 70px;
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #suggest-movie-btn {
@@ -41,11 +46,10 @@ h2 {
     font-family: 'Fuzzy Bubbles', cursive;
     color: var(--white);
     padding: 0px;
-    padding-top: 4px;
     background-color: rgba(192, 33, 33, 0.6);
     /* background-size: 20px; */
     margin: 20px;
-    width: 240px;
+    width: 245px;
     z-index: 1;
 }
 
@@ -57,7 +61,7 @@ h2 {
 #film-img {
     display: inline;
     position: absolute;
-    left: 568px;
+    /* left: 568px; */
     top: -16px;
     z-index: -1;
     min-width: 300px;
@@ -89,6 +93,15 @@ button:focus{
     background-color: red;
 }
 
+#clear-local-storage {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: var(--white);
+    font-size: .75rem;
+    width: 7%;
+    padding: 5px;
+    margin: 0px;
+}
+
 
 /* complete movie poster information */
 .poster-section {
@@ -118,7 +131,7 @@ button:focus{
     width: 275px;
     height: 450px;
     position:absolute;
-    top:20px;
+    top: 5px;
     left: 40.5%;
 }
 
