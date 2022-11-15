@@ -29,8 +29,8 @@ function getTitleByGenre(genreString) {
 		//This is information the API needs for the call
 		method: "GET",
 		headers: {
-			"X-RapidAPI-Key": "ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790",//Rhys' full subscription to advanced movie search
-			"X-RapidAPI-Host": "advanced-movie-search.p.rapidapi.com",
+			'X-RapidAPI-Key': '5cec1b6fafmsh96cbe5417d10614p139e32jsn36f6496e92fe', //Jayden's limited API key
+			'X-RapidAPI-Host': 'advanced-movie-search.p.rapidapi.com'
 		},
 	};
 	fetch(genreURL, options)
@@ -68,8 +68,8 @@ var detailedURL = "https://advanced-movie-search.p.rapidapi.com/movies/getdetail
 const options3 = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': 'ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790',
-		'X-RapidAPI-Host': 'advanced-movie-search.p.rapidapi.com'
+		'X-RapidAPI-Key': '5cec1b6fafmsh96cbe5417d10614p139e32jsn36f6496e92fe', //Jayden's limited API key
+			'X-RapidAPI-Host': 'advanced-movie-search.p.rapidapi.com'
 	}
 };
 fetch(detailedURL, options3)
@@ -98,7 +98,7 @@ function getStreamsByIMDBID(IMDBID)
 	const options = {
 		method: 'GET',
 		headers: {
-			'X-RapidAPI-Key': 'ab5fb0b08dmsh801b30df51c049dp15ea7ejsn09d021675790',
+			'X-RapidAPI-Key': '5cec1b6fafmsh96cbe5417d10614p139e32jsn36f6496e92fe', //Jayden's limited API key
 			'X-RapidAPI-Host': 'mdblist.p.rapidapi.com'
 		}
 	};
