@@ -49,7 +49,7 @@ function clickWatchButton() {
 	document.getElementById("poster-img2").src = poster;
 	document.getElementById("original_title2").textContent = title;
 	document.getElementById("overview2").textContent = overview;
-	document.getElementById("vote_average2").textContent = vote;
+	document.getElementById("vote_average2").textContent = ["Rating: "+vote+"/10"];
 }
 
 

@@ -94,7 +94,9 @@ button:active {
     padding: 60px;
     margin: 60px;
     border-style: dotted;
-    border-color: var(--light_yellow);
+    border-color: var(--butter);
+    border-width: thick;
+    background-color: var(--dark_red);
 }
 
 main {

@@ -1,4 +1,4 @@
-/* :root {
+:root {
     --bright_red: #DC2026;
     --dark_red: #7E1616;
     --light_yellow: #FFFEAD;
@@ -7,22 +7,6 @@
     --grey: #C0C1C1; 
     --background_color: black;
 }
-
-
-/* h1 {
-    font-size: 400px;
-    color: var(--dark_red);
-    text-align: center;
-    font-family: 'Rampart One', cursive;
-}
-
-h2 {
-    font-size: 30px;
-    font-family: 'Fuzzy Bubbles', cursive;
-    color: var(--bright_red);
-    padding: 20px;
-    text-align: center;
-} */
 
 /* Buttons/Pick Genre Section */
 #all-buttons {
@@ -41,6 +25,7 @@ h2 {
 
 .center {
     position: relative;
+    display:inline;
     display: flex;
     justify-content: center;
     padding-top: 20px;
@@ -70,10 +55,12 @@ h2 {
 }
 
 #film-img {
+    display: inline;
     position: absolute;
     left: 568px;
     top: -16px;
     z-index: -1;
+    min-width: 300px;
 }
 
 button {
@@ -167,6 +154,49 @@ button:focus{
     padding-bottom: 10px;
     text-decoration: underline;
 }
+
+/* Streaming Availability information */
+
+.movie-information {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--white);
+}
+
+#movie-about,
+#streaming-content {
+    width: 500px;
+    height: 450px;
+}
+
+#streaming-content {
+    color: var(--white);
+    text-decoration: underline;
+}
+
+#streaming-content:hover {
+    color: var(--butter);
+}
+
+
+.movie-save-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.start-over-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#Start-over {
+    width: 10%;
+    font-size: 16px;
+}
+
 
 
 /* phone size */
