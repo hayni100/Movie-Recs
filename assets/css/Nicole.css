@@ -25,14 +25,15 @@ h2 {
 
 .center {
     position: relative;
-    display:inline;
-    display: flex;
-    justify-content: center;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
     padding-top: 20px;
 }
 
 .pick-genre {
-    padding-top: 70px;
+    padding-top: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -48,7 +49,7 @@ h2 {
     background-color: rgba(192, 33, 33, 0.6);
     /* background-size: 20px; */
     margin: 20px;
-    width: 275px;
+    width: 245px;
     z-index: 1;
 }
 
