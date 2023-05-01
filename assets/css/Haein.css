@@ -1,3 +1,6 @@
+
+ 
+
 :root {
   --bright_red: #dc2026;
   --dark_red: #7e1616;
@@ -155,13 +158,11 @@ h3 {
     top:20px;
     left: 40.5%;
 }
-
 #poster-path:hover + .movie-contents {
     visibility: visible;
     box-shadow: 0px 0px 10px var(--light_yellow);
     cursor: pointer;
 }
-
 #poster-path:hover + .movie-contents {
     visibility: visible;
     box-shadow: 0px 0px 10px var(--light_yellow);
